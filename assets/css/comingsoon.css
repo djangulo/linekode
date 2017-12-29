@@ -1,0 +1,115 @@
+svg {
+    transform-origin: 50% 50%;
+}
+
+body {
+    background: #e5e0e0;
+    padding-top: 40px;
+    padding-left: 40px;
+    font-size: 14pt;
+}
+
+.message {
+    display: block;
+    margin-top: 0.3em;
+    margin-left: 25px;
+}
+
+.message h1,
+.message p {
+    font-family: 'Loma', 'Roboto', sans-serif, Verdana;
+    color: #4a0d33;
+    clear: both;
+    margin: 20px 5px;
+    opacity: 0;
+}
+
+
+.message h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.message p {
+    font-size: 1.2em;
+}
+
+
+.contact {
+    list-style: none;
+    padding: 0;
+    margin: 0 5px;
+    font-size: 0.7em;
+}
+
+.contact li {
+    opacity: 0;
+}
+
+.contact a{
+    display: block;
+    min-height: 20px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    padding: 0 0 0 30px;
+    margin: 0 0 10px;
+}
+
+.contact h4 {
+    margin-bottom: 5px;
+}
+
+.contact li.phone a {
+    background-image: url('../img/phone.png');
+}
+
+.contact li.mail a {
+    background-image: url('../img/mail.png');
+}
+
+.contact li.github a {
+    background-image: url('../img/GitHub-Mark.png');
+}
+
+
+.container {
+    display: block;
+    margin: 0 auto;
+    max-width: 940px;
+    height: 200px;
+}
+
+.container svg {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+.bars path {
+    opacity: 0;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        background: #e5e0e0;
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+    .container svg {
+        width: 100%;
+    }
+    .message {
+        margin-left: 15px;
+    }
+    .message h1 {
+        font-size: 1.3em;
+        margin: 5px 5px;
+    }
+    .message p {
+        font-size: 0.8em;
+        margin: 5px 5px;
+    }
+    .contact {
+        /*font-size: ;*/
+    }
+}

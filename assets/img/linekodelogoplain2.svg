@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg7912" width="1090" height="300" version="1.1" viewBox="0 0 1089.9999 300" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <!--<metadata id="metadata7917">-->
+ <!-- <rdf:RDF>-->
+ <!--  <cc:Work rdf:about="">-->
+ <!--   <dc:format>image/svg+xml</dc:format>-->
+ <!--   <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>-->
+ <!--   <dc:title/>-->
+ <!--  </cc:Work>-->
+ <!-- </rdf:RDF>-->
+ <!--</metadata>-->
+ <g id="layer1" transform="translate(0 -752.36)">
+  <g id="g6645" transform="translate(-391.31 -4634.6)">
+   <text id="text6274" x="476.72296" y="5605.5435" fill="#00222b" font-family="sans-serif" font-size="180px" letter-spacing="2.55px" stroke-width="1px" word-spacing="0px" style="line-height:125%" xml:space="preserve"><tspan id="tspan6276" x="476.72296" y="5605.5435" fill="#00222b" font-family="sans-serif" letter-spacing="2.55px">LINEKODE</tspan></text>
+   <path id="path6278" d="m981.04 5519.1 89.734-0.8807" fill="#5df" fill-rule="evenodd" stroke="#5df" stroke-width="12.8"/>
+   <path id="path6280" d="m981.73 5537.9 89.734-0.8807" fill="#00222b" fill-rule="evenodd" stroke="#00aad4" stroke-width="12.8"/>
+   <path id="path6282" d="m981.31 5556.2 89.734-0.8807" fill="#00222b" fill-rule="evenodd" stroke="#006680" stroke-width="12.8"/>
+   <rect id="rect6284" x="399.35" y="5394.4" width="1073.9" height="285.05" fill="none" opacity=".92" stroke="#e5e0e0" stroke-linecap="round" stroke-linejoin="round" stroke-width="12.8"/>
+  </g>
+ </g>
+</svg>

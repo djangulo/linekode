@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1089.9999 300"
+     version="1.1"
+     height="300"
+     width="1090"
+     id="svg7912">
+    <defs
+         id="defs14" />
+    <metadata
+         id="metadata7917">
+        <rdf:RDF>
+            <cc:Work
+                 rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                     rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title />
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <g
+         transform="translate(0,-752.4)"
+         id="layer1">
+        <g
+             transform="translate(-391.3,-4635)"
+             id="g6645">
+            <g
+                 id="text6274"
+                 style="font-size:180px;line-height:125%;font-family:sans-serif;letter-spacing:2.55px;word-spacing:0px;fill:#00222b;stroke-width:1px"
+                 aria-label="LINEKODE">
+                <path
+                     id="path16"
+                     style="font-family:sans-serif;letter-spacing:2.55px;fill:#00222b"
+                     d="m 494.4,5475 h 17.7 v 116 H 576 v 15 h -81.6 z" />
+                <path
+                     id="path18"
+                     style="font-family:sans-serif;letter-spacing:2.55px;fill:#00222b"
+                     d="m 597.1,5475 h 17.8 v 131 h -17.8 z" />
+                <path
+                     id="path20"
+                     style="font-family:sans-serif;letter-spacing:2.55px;fill:#00222b"
+                     d="m 652.7,5475 h 24 l 58.1,110 v -110 h 17.3 v 131 H 728.2 L 670,5496 v 110 h -17.3 z" />
+                <path
+                     id="path22"
+                     style="font-family:sans-serif;letter-spacing:2.55px;fill:#00222b"
+                     d="m 789.9,5475 h 83 v 15 h -65.2 v 39 h 62.5 v 15 h -62.5 v 47 h 66.8 v 15 h -84.6 z" />
+                <path
+                     id="path24"
+                     style="font-family:sans-serif;letter-spacing:2.55px;fill:#00222b"
+                     d="m 906.4,5475 h 17.8 v 55 l 58.8,-55 h 23 l -65.2,61 70.2,70 h -23.8 l -63,-63 v 63 h -17.8 z" />
+                <path
+                     id="path26"
+                     style="font-family:sans-serif;letter-spacing:2.55px;fill:#00222b"
+                     d="m 1070,5487 q -19,0 -30,14 -12,15 -12,40 0,24 12,39 11,14 30,14 20,0 31,-14 11,-15 11,-39 0,-25 -11,-40 -11,-14 -31,-14 z m 0,-15 q 28,0 45,19 16,18 16,50 0,31 -16,49 -17,19 -45,19 -27,0 -44,-19 -16,-18 -16,-49 0,-32 16,-50 17,-19 44,-19 z" />
+                <path
+                     id="path28"
+                     style="font-family:sans-serif;letter-spacing:2.55px;fill:#00222b"
+                     d="m 1179,5489 v 102 h 22 q 27,0 39,-12 13,-12 13,-39 0,-26 -13,-38 -12,-13 -39,-13 z m -18,-14 h 37 q 38,0 56,16 18,16 18,49 0,34 -18,50 -18,16 -56,16 h -37 z" />
+                <path
+                     id="path30"
+                     style="font-family:sans-serif;letter-spacing:2.55px;fill:#00222b"
+                     d="m 1303,5475 h 82 v 15 h -65 v 39 h 63 v 15 h -63 v 47 h 67 v 15 h -84 z" />
+            </g>
+            <path
+                 style="fill:#55ddff;fill-rule:evenodd;stroke:#55ddff;stroke-width:12.8"
+                 d="m 981,5519 90,-1"
+                 id="path6278" />
+            <path
+                 style="fill:#00222b;fill-rule:evenodd;stroke:#00aad4;stroke-width:12.8"
+                 d="m 981.7,5538 89.3,-1"
+                 id="path6280" />
+            <path
+                 style="fill:#00222b;fill-rule:evenodd;stroke:#006680;stroke-width:12.8"
+                 d="m 981.3,5556 89.7,-1"
+                 id="path6282" />
+            <path
+                 id="rect6284"
+                 d="M 399.4,5394 H 1473 v 285 H 399.4 Z"
+                 style="opacity:0.92;fill:none;stroke:#e5e0e0;stroke-width:12.8;stroke-linecap:round;stroke-linejoin:round" />
+        </g>
+    </g>
+</svg>
