@@ -77,16 +77,39 @@ Block Divs
     width: 100%;
     background-color: #aaaaaa;
     border-bottom: 1px solid #501644;
-    display: grid;
 }
 
-.burgundy {
-    background-color: #ac2058;
+.value {
+    display: flex;   
+    align-items: center;
 }
 
-.orange {
+.jumbo {
+    font-size: 2em;
+    font-family: 'Berkshire Swash', cursive, "Open Sans", sans-serif;
+    text-align: center;
+}
+
+.challenges {
     background-color: #d84949;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    grid-template-rows: 1fr 1fr;
 }
+
+.challenges h2 {
+    grid-row: 1;
+    grid-column: span 12;
+    text-align: center;
+}
+
+.challenges ul {
+    grid-row: 2;
+    grid-column: span 6;
+    margin-left: 15px;
+}
+
 
 .mustard {
     background-color: #fdda59;
@@ -110,6 +133,29 @@ footer {
     margin: 0 5px;
 }
 
+
+
+/* .container {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: 100px 100px;
+    grid-auto-rows: 75px;
+    grid-auto-flow: dense;
+}
+
+.horizontal {
+    grid-column: span 2;
+}
+
+.vertical {
+    grid-column: span 2;
+}
+
+.big {
+    grid-column: span 2;
+    grid-row: span 2;
+} */
 
 
 /*****************************  

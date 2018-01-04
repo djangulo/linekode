@@ -7,6 +7,7 @@ class Contact(models.Model):
     last_name = models.CharField(max_length=50, blank=False)
     email = models.CharField(max_length=100, blank=False)
     phone = models.CharField(max_length=15, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = _('contact')
@@ -23,6 +24,7 @@ class ContactMessage(models.Model):
         verbose_name=_('messages'),
     )
     description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = _('contact message')
