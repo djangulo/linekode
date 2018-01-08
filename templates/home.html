@@ -5,6 +5,7 @@
     <head>
         <meta charset="utf-8">
         <title>Linekode | Home</title>
+        <script src="{% static 'js/lib/es6/ES6.js' %}"></script>
         <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i,800" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
@@ -56,8 +57,8 @@
             <!-- <div class="block burgundy">
                 chat with us
             </div> -->
-            <div class="block orange">
-                contact
+            <div id="contact" class="block orange">
+                
             </div>
 
 
@@ -72,5 +73,7 @@
             </footer>
         </div>
     </body>
+    
     <script src="{% static 'js/scroll.js' %}"></script>
+    <script src="{% static 'js/post_form.js' %}"></script>
 </html>

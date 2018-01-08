@@ -1,4 +1,4 @@
-from django.views.generic import FormView
+from django.views.generic import TemplateView
 
 
 class HomeView(TemplateView):
