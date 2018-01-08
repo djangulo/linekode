@@ -1,0 +1,16 @@
+{
+  "name": "linekode",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "python manage.py runserver",
+    "test": "python manage.py test"
+  },
+  "private": true,
+  "dependencies": {
+    "rxjs": "^5.5.6"
+  },
+  "devDependencies": {
+    "es6": "0.0.7"
+  }
+}
