@@ -38,4 +38,7 @@ class FullMessageSerializer(serializers.Serializer):
     email = serializers.EmailField()
     phone = serializers.CharField(max_length=50)
     message = serializers.CharField(max_length=500)
+    g_recaptcha_response = serializers.CharField(max_length=800)
+
+
 

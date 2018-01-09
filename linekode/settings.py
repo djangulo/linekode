@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from .secrets import (
+    GOOGLE_RECAPTCHA_PRIVATE_KEY,
+    GOOGLE_RECAPTCHA_PUBLIC_KEY,
+    SECRET_KEY,
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u@$m5*$z)^1f3)$&9+8s)36l7pij4%4us52okr+o(9!7w7ppml'
+#SECRET_KEY = 'u@$m5*$z)^1f3)$&9+8s)36l7pij4%4us52okr+o(9!7w7ppml'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -159,4 +164,3 @@ REST_FRAMEWORK = {
         'contact_form': '10/minute',
     }
 }
-
