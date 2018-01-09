@@ -3,15 +3,21 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Contact(models.Model):
-    first_name = models.CharField(max_length=50, blank=False)
-    last_name = models.CharField(max_length=50, blank=False)
-    email = models.CharField(max_length=100, blank=False)
-    phone = models.CharField(max_length=15, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    first_name = models.CharField(max_length=50, blank=True, null=True)
+    last_name = models.CharField(max_length=50, blank=True, null=True)
+    email = models.CharField(max_length=100, blank=False, null=False, unique=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     class Meta:
         verbose_name = _('contact')
         verbose_name_plural = _('contacts')
+
+    def get_messages(self):
+        return self.messages.all()
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}: {self.email}'
 
 
 class ContactMessage(models.Model):
@@ -23,8 +29,8 @@ class ContactMessage(models.Model):
         related_name='messages',
         verbose_name=_('messages'),
     )
-    description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    message = models.TextField()
+    sent_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = _('contact message')

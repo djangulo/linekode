@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -143,10 +145,18 @@ NPM_ROOT_PATH = os.path.join(BASE_DIR, 'npm')
 NPM_STATIC_FILES_PREFIX = os.path.join('js', 'lib')
 
 NPM_FILE_PATTERNS = {
-    'es6': ['ES6.js'],
-    'rxjs': [
-        'observable',
-        'add/operator/map.js',
-        'add/operator/of.js',
-    ],
+    'es6': ['ES6.js',],
+    'rxjs': ['Rx.js',],
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.ScopedRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '800/minute',
+        'contact_form': '10/minute',
+    }
+}
+
