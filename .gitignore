@@ -15,6 +15,7 @@ venv
 
 .coverage
 
+secrets.py
 secret_key.py
 gmaps_key.py
 
