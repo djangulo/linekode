@@ -64,9 +64,31 @@
             </div> -->
             <div id="contact" class="block orange">
                 <form id="contact-form" action="#" method="POST">
+                    <label for="first_name">{{ first_name }}
+                        <input name="first_name" type="text" placeholder="John" autocomplete="given-name" />
+                    </label>
+                    <label for="last_name">{{ last_name }}
+                        <input name="last_name" type="text" placeholder="Doe" autocomplete="family-name" />
+                    </label>
+                    <label for="email">{{ email }}
+                        <input name="email" type="email" placeholder="john.doe@example.com" autocomplete="email" />
+                    </label>
+                    <label for="phone">{{ telephone }}
+                        <input 
+                        name="phone" 
+                        type="tel" 
+                        placeholder="+1(809)123-4567" 
+                        autocomplete="tel-national" />
+                    </label>
+                    <label for="message">{{ message }}
+                        <textarea name="message" type="text" placeholder='{{ your_message_here }}' autocomplete="off" />
+                        </textarea>
+                    </label>
 
+                    <div class="g-recaptcha" data-sitekey="6LcI9T8UAAAAAJYKpNvI3JBDRGssf8Zppx1ccXzE"></div>
+                    <button type="submit">{{ submit }}</button>
+                    <button type="reset">{{ clear }}</button>
                 </form>
-                
             </div>
 
 
