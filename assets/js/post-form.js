@@ -75,7 +75,7 @@ function send_message() {
             $parent.children().each(function() {
                 $(this).detach();
             })
-            $parent.html("<p>" + json.response "</p>");
+            $parent.html("<p>" + json.response + "</p>");
         },
         error: function(xhr, errmsg, err) {
             $parent.append(
