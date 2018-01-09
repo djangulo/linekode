@@ -1,57 +1,3 @@
-var Widget = {
-	init: function(){
-        this.$label = null
-		this.$elem = null;
-	},
-	insert: function($where){
-        if (this.$label) { this.$label.appendTo( $where );}
-        if (this.$elem) { this.$elem.appendTo( $where );}
-	}
-};
-
-
-// Inputs setup
-var InputBox = Object.create( Widget );
-InputBox.setup = function( name, label, type, placeholder, autocomplete) {
-    this.init();
-    this.name = name || 'Generic name';
-    this.label = label || this.name;
-    this.type = type || 'text';
-    this.placeholder = placeholder || this.label;
-    this.autocomplete = autocomplete || null;
-    if (type == 'textarea') {
-        this.$label = $("<label>").attr('for', this.name);
-        this.$label.html(this.label);
-        this.$elem = $("<textarea>").attr('name', this.name);
-        this.$elem.attr('placeholder', this.placeholder);
-    } else {
-        this.$label = $("<label>").attr('for', this.name);
-        this.$label.html(this.label);
-        this.$elem = $("<input>").attr('name',this.name);
-        this.$elem.attr('type', this.type);
-        this.$elem.attr('placeholder', this.placeholder);
-    }
-    if (this.autocomplete) {this.$elem.attr('autocomplete', this.autocomplete)}
-    
-}
-InputBox.build = function($where) {
-    this.insert( $where );
-};
-
-// Buttons setup
-var Button = Object.create( Widget );
-Button.setup = function(type, label) {
-    this.init();
-    this.type = type || "button";
-    this.label = label || "Button";
-    this.$elem = $("<button>").text( this.label);
-    this.$elem.attr('type', this.type);
-}
-Button.build = function($where) {
-    this.insert( $where );
-}
-
-
 function send_message() {
     var data = new Object();
     var values = $(this).serializeArray();
@@ -86,43 +32,12 @@ function send_message() {
 }
 $(document).ready( function() {
     var $contact = $('#contact-form');
-    var firstName = Object.create( InputBox );
-    firstName.setup('first_name', 'First Name', 'text', 'John', 'given-name')
-    firstName.build( $contact );
-    var lastName = Object.create( InputBox );
-    lastName.setup('last_name', 'Last Name', 'text', 'Doe', 'family-name')
-    lastName.build( $contact );
-    var email = Object.create( InputBox );
-    email.setup('email', 'Email', 'email', 'john.doe@example.com', 'email')
-    email.build( $contact );
-    var phone = Object.create( InputBox );
-    phone.setup('phone', 'Phone', 'text', '+1(809) 123-4567', 'tel-national')
-    phone.build( $contact );
-    var message = Object.create( InputBox );
-    message.setup('message', 'Message', 'textarea', 'Your description here')
-    message.build( $contact );
-
-    var submit = Object.create( Button );
-    submit.setup('submit', 'Submit');
-    submit.build($contact);
-    var reset = Object.create( Button );
-    submit.setup('reset', 'Clear');
-    submit.build($contact);
-
     $contact.on('submit', function(event) {
         event.preventDefault();
-        console.log('form submitted');
-        var values = $(this).serializeArray();
         send_message.call($(this));
     })
 
 });
-
-
-
-
-
-
 
 $(function() {
     function getCookie(name) {
