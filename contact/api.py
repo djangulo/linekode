@@ -12,9 +12,9 @@ from rest_framework.views import APIView
 from contact.models import Contact, ContactMessage
 from contact.serializers import FullMessageSerializer
 
-FIRST_MESSAGE_RESPONSE = "Your message was sent succesfully!"
-RETURNING_MESSAGE_RESPONSE = "Thank you for coming back! Your message was sent succesfully!"
-FAILED_CAPTCHA_RESPONSE = "Invalid reCAPTCHA. Please try again."
+FIRST_MESSAGE_RESPONSE = _("Your message was sent succesfully!")
+RETURNING_MESSAGE_RESPONSE = _("Thank you for coming back! Your message was sent succesfully!")
+FAILED_CAPTCHA_RESPONSE = _("Invalid reCAPTCHA. Please try again.")
 
 
 def validate_captcha_response(response):
@@ -42,7 +42,7 @@ class PostContactMessageAPIView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         ##### THIS IS HACKY, FIXX THIS ASAP
-        request.data['g_recaptcha_response'] = request.data['g-recaptcha-response']
+        request.data['g_recaptcha_response'] = request.data.pop('g-recaptcha-response')
         ### END OF HACKYNESS
         serializer.is_valid(raise_exception=True)
         contact_email = serializer.validated_data['email']
@@ -52,7 +52,7 @@ class PostContactMessageAPIView(APIView):
         if captcha is None:
             return Response({
                 'success': False,
-                'response': _(FAILED_CAPTCHA_RESPONSE)
+                'response': FAILED_CAPTCHA_RESPONSE
             }, status=status.HTTP_428_PRECONDITION_REQUIRED)
         if created:
             contact.first_name = serializer.validated_data['first_name']
@@ -65,7 +65,7 @@ class PostContactMessageAPIView(APIView):
             )
             return Response({
                 'success': True,
-                'response': _(FIRST_MESSAGE_RESPONSE)
+                'response': FIRST_MESSAGE_RESPONSE
             }, status=status.HTTP_200_OK)
         else:
             msg = ContactMessage.objects.create(
@@ -74,7 +74,7 @@ class PostContactMessageAPIView(APIView):
             )
             return Response({
                 'success': True,
-                'response': _(RETURNING_MESSAGE_RESPONSE)
+                'response': RETURNING_MESSAGE_RESPONSE
             }, status=status.HTTP_200_OK)
         return Response({'success': False},
                     status=status.HTTP_400_BAD_REQUEST)
