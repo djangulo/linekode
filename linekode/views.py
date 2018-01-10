@@ -5,13 +5,4 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
 def home(request):
-    return render(request, 'home.html', {
-        'first_name': _('First name'),
-        'last_name': _('Last name'),
-        'email': 'Email',
-        'telephone': _('Telephone'),
-        'message': _('Message'),
-        'submit': _('Submit'),
-        'clear': _('Clear'),
-        'your_message_here': _('Your message here'),
-    })
+    return render(request, 'home.html')
