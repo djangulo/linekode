@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-10 10:42-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\forms.py:25
+msgid "First name"
+msgstr "Nombre"
+
+#: .\forms.py:26
+msgid "Last name"
+msgstr "Apellido"
+
+#: .\forms.py:28
+msgid "Phone"
+msgstr "Tel&eacute;fono"
+
+#: .\models.py:13
+msgid "contact"
+msgstr "contacto"
+
+#: .\models.py:14
+msgid "contacts"
+msgstr "contactos"
+
+#: .\models.py:30
+msgid "messages"
+msgstr "mensajes"
+
+#: .\models.py:36
+msgid "contact message"
+msgstr "mensaje de contacto"
+
+#: .\models.py:37
+msgid "contact messages"
+msgstr "mensajes de contacto"

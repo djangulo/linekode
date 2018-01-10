@@ -12,7 +12,7 @@ function send_message() {
     console.log(data);
     console.log(JSON.stringify(data));
     $.ajax({
-        url: 'api/v1/messages/',
+        url: '/api/v1/messages/',
         method: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',

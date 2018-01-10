@@ -1,0 +1,70 @@
+# Translations template for PROJECT.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-01-10 10:54-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.1\n"
+
+#: linekode/views.py:9
+msgid "Value"
+msgstr "Valor"
+
+#: linekode/views.py:10
+msgid "Why?"
+msgstr "&#191;Por qu&eacute;?"
+
+#: linekode/views.py:11
+msgid "Contact"
+msgstr "Contacto"
+
+#: linekode/views.py:12
+msgid "Work"
+msgstr "Trabajo"
+
+#: linekode/views.py:13
+msgid ""
+"There are no limits when you love your project. Expanding your project is"
+" easier than ever."
+msgstr "No hay l&iacute;mites cuando amas tu proyecto. Expandir tu negocio"
+" es m&aacute;s f&aacute;cil que nunca."
+
+#: linekode/views.py:14
+msgid "Why us?"
+msgstr "&#191;Por qu&eacute; nosotros?"
+
+#: linekode/views.py:15
+msgid "First name(s)"
+msgstr "Nombre(s)"
+
+#: linekode/views.py:16
+msgid "Last name(s)"
+msgstr "Apellido(s)"
+
+#: linekode/views.py:17
+msgid "Email"
+msgstr "Correo electr&oacute;nico"
+
+#: linekode/views.py:18
+msgid "Phone"
+msgstr "Tel&eacute;fono"
+
+#: linekode/views.py:19
+msgid "Message"
+msgstr "Mensaje"
+
+#: linekode/views.py:20
+msgid "Your message here"
+msgstr "Su mensaje aqu&iacute;"
+
