@@ -19,51 +19,52 @@ msgstr ""
 
 #: linekode/views.py:9
 msgid "Value"
-msgstr ""
+msgstr "M&eacute;rite"
 
 #: linekode/views.py:10
 msgid "Why?"
-msgstr ""
+msgstr "Pourquoi ?"
 
 #: linekode/views.py:11
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #: linekode/views.py:12
 msgid "Work"
-msgstr ""
+msgstr "Travail"
 
 #: linekode/views.py:13
 msgid ""
 "There are no limits when you love your project. Expanding your project is"
 " easier than ever."
-msgstr ""
+msgstr "Il n'y a pas de limites quand vous aimez votre projet. L'expansion de votre projet est"
+" plus facile que jamais."
 
 #: linekode/views.py:14
 msgid "Why us?"
-msgstr ""
+msgstr "Pourquoi nous ?"
 
 #: linekode/views.py:15
 msgid "First name(s)"
-msgstr ""
+msgstr "Pr&eacute;nom"
 
 #: linekode/views.py:16
 msgid "Last name(s)"
-msgstr ""
+msgstr "Nom"
 
 #: linekode/views.py:17
 msgid "Email"
-msgstr ""
+msgstr "Courriel"
 
 #: linekode/views.py:18
 msgid "Phone"
-msgstr ""
+msgstr "T&eacute;l&eacute;phone"
 
 #: linekode/views.py:19
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #: linekode/views.py:20
 msgid "Your message here"
-msgstr ""
+msgstr "Votre message ici"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-10 10:54-0500\n"
+"POT-Creation-Date: 2018-01-10 12:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,54 +17,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.1\n"
 
-#: linekode/views.py:9
+#: linekode/translation_context.py:4
 msgid "Value"
-msgstr "Valor"
+msgstr ""
 
-#: linekode/views.py:10
+#: linekode/translation_context.py:5
 msgid "Why?"
 msgstr "&#191;Por qu&eacute;?"
 
-#: linekode/views.py:11
+#: linekode/translation_context.py:6
 msgid "Contact"
 msgstr "Contacto"
 
-#: linekode/views.py:12
+#: linekode/translation_context.py:7
 msgid "Work"
 msgstr "Trabajo"
 
-#: linekode/views.py:13
+#: linekode/translation_context.py:8
 msgid ""
 "There are no limits when you love your project. Expanding your project is"
 " easier than ever."
-msgstr "No hay l&iacute;mites cuando amas tu proyecto. Expandir tu negocio"
-" es m&aacute;s f&aacute;cil que nunca."
+msgstr "No hay l&iacute;mites cuando amas tu proyecto. Expandir tu negocio es"
+" m&aacute;s f&aacute;cil que nunca."
 
-#: linekode/views.py:14
+#: linekode/translation_context.py:9
 msgid "Why us?"
 msgstr "&#191;Por qu&eacute; nosotros?"
 
-#: linekode/views.py:15
+#: linekode/translation_context.py:10
 msgid "First name(s)"
 msgstr "Nombre(s)"
 
-#: linekode/views.py:16
+#: linekode/translation_context.py:11
 msgid "Last name(s)"
 msgstr "Apellido(s)"
 
-#: linekode/views.py:17
+#: linekode/translation_context.py:12
 msgid "Email"
 msgstr "Correo electr&oacute;nico"
 
-#: linekode/views.py:18
+#: linekode/translation_context.py:13
 msgid "Phone"
 msgstr "Tel&eacute;fono"
 
-#: linekode/views.py:19
+#: linekode/translation_context.py:14
 msgid "Message"
-msgstr "Mensaje"
+msgstr "mensaje"
 
-#: linekode/views.py:20
+#: linekode/translation_context.py:15
 msgid "Your message here"
 msgstr "Su mensaje aqu&iacute;"
+
+#: linekode/translation_context.py:16
+msgid "Submit"
+msgstr "Enviar"
+
+#: linekode/translation_context.py:17
+msgid "Clear"
+msgstr "Limpiar"
 
