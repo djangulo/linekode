@@ -148,25 +148,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, 'assets', 'bundle'),
 )
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'npm.finders.NpmFinder',
-]
-
-NPM_ROOT_PATH = os.path.join(BASE_DIR, 'npm')
-NPM_STATIC_FILES_PREFIX = os.path.join('js', 'lib')
-
-NPM_FILE_PATTERNS = {
-    'es6': ['ES6.js',],
-    'rxjs': ['Rx.js',],
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_CLASSES': (
