@@ -27,7 +27,7 @@
     </head>
     <body>
         <header>
-            <a href="main_page.html">
+            <a href="{% url 'home' %}">
                 <img src="{% static "img/linekodelogoplain.svg" %}" alt="linekode logo"/>
             </a>
             <nav>
@@ -105,7 +105,7 @@
                         <textarea name="message" type="text" placeholder="{{ your_message_here }}" autocomplete="off"></textarea>
                     </label>
 
-                    <div class="g-recaptcha" data-sitekey="6LcI9T8UAAAAAJYKpNvI3JBDRGssf8Zppx1ccXzE"></div>
+                    <div class="g-recaptcha" data-sitekey="{{g_recaptcha_public_key }}"></div>
                     <button type="submit">{% trans "Submit" %}</button>
                     <button type="reset">{% trans "Clear" %}</button>
                 </form>
