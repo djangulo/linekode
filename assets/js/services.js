@@ -265,45 +265,88 @@ let MockText = {
             for(let i = 0; i < this._.lines; i++) {
                 let line;
                 let titleLineShade;
-                if(this._.title && i === 0){
-                    line = Snap().rect(
-                        this._.XY.x,
-                        this._.XY.y,
-                        this._.lineWidth * 0.6,
-                        this._.lineHeight * 1.6)
-                        .attr(
-                            {
-                            fill: this._.titleLineShade,
-                            rx: this._.rx,
-                            ry: this._.ry
-                        }
-                    )                    
-                } else if(i % 2 == 0) {
-                    line = Snap().rect(
-                        this._.XY.x,
-                        this._.XY.y + (this._.lineSpacing * i),
-                        this._.lineWidth * 0.9,
-                        this._.lineHeight)
-                        .attr(
-                            {
-                            fill: this._.fill,
-                            rx: this._.rx,
-                            ry: this._.ry
-                        }
-                    )
-                } else {
-                    line = Snap().rect(
-                        this._.XY.x,
-                        this._.XY.y + (this._.lineSpacing * i),
-                        this._.lineWidth,
-                        this._.lineHeight)
-                        .attr(
-                            {
-                            fill: this._.fill,
-                            rx: this._.rx,
-                            ry: this._.ry
-                        }
-                    )
+                if(this._.lineDirection == 'vertical') {
+                    if(this._.title && i === 0){
+                        line = Snap().rect(
+                            this._.XY.x,
+                            this._.XY.y,
+                            this._.lineWidth * 0.6,
+                            this._.lineHeight * 1.6)
+                            .attr(
+                                {
+                                fill: this._.titleLineShade,
+                                rx: this._.rx,
+                                ry: this._.ry
+                            }
+                        )                    
+                    } else if(i % 2 == 0) {
+                        line = Snap().rect(
+                            this._.XY.x,
+                            this._.XY.y + (this._.lineSpacing * i),
+                            this._.lineWidth * 0.9,
+                            this._.lineHeight)
+                            .attr(
+                                {
+                                fill: this._.fill,
+                                rx: this._.rx,
+                                ry: this._.ry
+                            }
+                        )
+                    } else {
+                        line = Snap().rect(
+                            this._.XY.x,
+                            this._.XY.y + (this._.lineSpacing * i),
+                            this._.lineWidth,
+                            this._.lineHeight)
+                            .attr(
+                                {
+                                fill: this._.fill,
+                                rx: this._.rx,
+                                ry: this._.ry
+                            }
+                        )
+                    }
+                } else if(this._.lineDirection == 'horizontal') {
+                    if(this._.title && i === 0){
+                        line = Snap().rect(
+                            this._.XY.x,
+                            this._.XY.y,
+                            this._.lineWidth * 0.6,
+                            this._.lineHeight * 1.6)
+                            .attr(
+                                {
+                                fill: this._.titleLineShade,
+                                rx: this._.rx,
+                                ry: this._.ry
+                            }
+                        )                    
+                    } else if(i % 2 == 0) {
+                        line = Snap().rect(
+                            this._.XY.x + (this._.lineSpacing * i),
+                            this._.XY.y,
+                            this._.lineWidth * 0.9,
+                            this._.lineHeight)
+                            .attr(
+                                {
+                                fill: this._.fill,
+                                rx: this._.rx,
+                                ry: this._.ry
+                            }
+                        )
+                    } else {
+                        line = Snap().rect(
+                            this._.XY.x + (this._.lineSpacing * i),
+                            this._.XY.y,
+                            this._.lineWidth,
+                            this._.lineHeight)
+                            .attr(
+                                {
+                                fill: this._.fill,
+                                rx: this._.rx,
+                                ry: this._.ry
+                            }
+                        )
+                    }
                 }
                 this._.self.add(line)
                 this._.set.push(line)
@@ -412,7 +455,7 @@ var createView = function() {
 
     // Nav
     var nav1 = Object.create(MockText);
-    nav1.init($paper, 70, 180, true, '#515750', 'vertical', 450, 10, 6, 10, '#B7BCB7', 6, 6, true, 1150, 10)
+    nav1.init($paper, 500, 120, false, '#C0C9BF', 'horizontal', 50, 10, 4, 60, '#C0C9BF', 6, 6, true, 1100, 10)
     nav1.build();
     nav1.hover();
 
@@ -422,14 +465,29 @@ var createView = function() {
     textArea.hover();
 
     var lines1 = Object.create(MockText);
-    lines1.init($paper, 70, 180, true, '#515750', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1150, 10)
+    lines1.init($paper, 70, 180, true, '#1F6217', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1150, 10)
     lines1.build();
     lines1.hover();
 
     var lines2 = Object.create(MockText);
-    lines2.init($paper, 70, 370, true, '#515750', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1150, 10)
+    lines2.init($paper, 70, 370, true, '#1F6217', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1150, 10)
     lines2.build();
     lines2.hover();
+
+    var aside = Object.create(Rectangle);
+    aside.init($paper, 600, 170, true, {x: 15, y: 15}, '#618400', 160, 400, 10, 10, true, 1120, 10);
+    aside.build();
+    aside.hover();
+
+    var asidePicture = Object.create(Rectangle);
+    asidePicture.init($paper, 620, 180, true, {x: 15, y: 15}, '#CCBC8E', 120, 100, 10, 10, true, 1120, 10);
+    asidePicture.build();
+    asidePicture.hover();
+
+    var asideText = Object.create(MockText);
+    asideText.init($paper, 620, 300, true, '#1F6217', 'vertical', 100, 5, 18, 16, '#B7BCB7', 6, 6, true, 1120, 10)
+    asideText.build();
+    asideText.hover();
 
 }();
 
