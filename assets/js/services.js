@@ -444,48 +444,48 @@ let MockText = {
 
 var createView = function() {
     var screen = Object.create(Rectangle);
-    screen.init($paper, 10, 10, true, {x: 15, y: 15}, '#D2CBB1', 800, 600, 10, 10, true, 1200, 10);
+    screen.init($paper, 10, 10, true, {x: 15, y: 15}, '#D2CBB1', 800, 600, 10, 10, true, 1300, 5);
     screen.build();
     screen.hover();
 
     var banner = Object.create(Rectangle);
-    banner.init($paper, 60, 30, true, {x: 15, y: 15}, '#1F6217', 700, 120, 10, 10, true, 1100, 10);
+    banner.init($paper, 60, 30, true, {x: 15, y: 15}, '#1F6217', 700, 120, 10, 10, true, 1330, 5);
     banner.build();
     banner.hover();
 
     // Nav
     var nav1 = Object.create(MockText);
-    nav1.init($paper, 500, 120, false, '#C0C9BF', 'horizontal', 50, 10, 4, 60, '#C0C9BF', 6, 6, true, 1100, 10)
+    nav1.init($paper, 500, 120, false, '#C0C9BF', 'horizontal', 50, 10, 4, 60, '#C0C9BF', 6, 6, true, 1330, 5)
     nav1.build();
     nav1.hover();
 
     var textArea = Object.create(Rectangle);
-    textArea.init($paper, 60, 170, true, {x: 15, y: 15}, '#ECEDEC', 500, 400, 10, 10, true, 1150, 10);
+    textArea.init($paper, 60, 170, true, {x: 15, y: 15}, '#ECEDEC', 500, 400, 10, 10, true, 1360, 5);
     textArea.build();
     textArea.hover();
 
     var lines1 = Object.create(MockText);
-    lines1.init($paper, 70, 180, true, '#1F6217', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1150, 10)
+    lines1.init($paper, 70, 180, true, '#1F6217', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1360, 5)
     lines1.build();
     lines1.hover();
 
     var lines2 = Object.create(MockText);
-    lines2.init($paper, 70, 370, true, '#1F6217', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1150, 10)
+    lines2.init($paper, 70, 370, true, '#1F6217', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1360,5)
     lines2.build();
     lines2.hover();
 
     var aside = Object.create(Rectangle);
-    aside.init($paper, 600, 170, true, {x: 15, y: 15}, '#618400', 160, 400, 10, 10, true, 1120, 10);
+    aside.init($paper, 600, 170, true, {x: 15, y: 15}, '#618400', 160, 400, 10, 10, true, 1390, 5);
     aside.build();
     aside.hover();
 
     var asidePicture = Object.create(Rectangle);
-    asidePicture.init($paper, 620, 180, true, {x: 15, y: 15}, '#CCBC8E', 120, 100, 10, 10, true, 1120, 10);
+    asidePicture.init($paper, 620, 180, true, {x: 15, y: 15}, '#CCBC8E', 120, 100, 10, 10, true, 1390, 5);
     asidePicture.build();
     asidePicture.hover();
 
     var asideText = Object.create(MockText);
-    asideText.init($paper, 620, 300, true, '#1F6217', 'vertical', 100, 5, 18, 16, '#B7BCB7', 6, 6, true, 1120, 10)
+    asideText.init($paper, 620, 300, true, '#1F6217', 'vertical', 100, 5, 18, 16, '#B7BCB7', 6, 6, true, 1390, 5)
     asideText.build();
     asideText.hover();
 
