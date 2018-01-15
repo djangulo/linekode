@@ -485,7 +485,7 @@ var createView = function() {
     asidePicture.hover();
 
     var asideText = Object.create(MockText);
-    asideText.init($paper, 620, 300, true, '#1F6217', 'vertical', 100, 5, 18, 16, '#B7BCB7', 6, 6, true, 1390, 5)
+    asideText.init($paper, 620, 300, false, '#1F6217', 'vertical', 100, 5, 17, 16, '#B7BCB7', 6, 6, true, 1390, 5)
     asideText.build();
     asideText.hover();
 
