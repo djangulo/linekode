@@ -1,230 +1,441 @@
-import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js';
 import './../sass/services.sass'
+
+import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js';
 
 import $ from 'jquery';
 
 // Skeleton views for different websites offered
 
-// let Mockup = window.Mockup || {};
-
-// Mockup = (function () {
-//     function Mockup ()
-// })
-
-
-const shadowOffset = 15;
-
 // Build a blog, initially, later i can morph into others as needed
 // - header banner
 // - nav under banner
 // - left column
-// - social media on right or something
+// - picture on right with small text running along
+
 
 let paperWidth = 1000;
 let paperHeight = 1200;
-let screenWidth = paperWidth * 2 / 3;
-let screenHeight = paperHeight / 2;
 
+console.log('Initializing "paper" with w: ' + paperWidth + ', h: ' + paperHeight)
+const $paper = Snap(paperWidth, paperHeight);
+window.$paper = $paper;
 
-const paper = Snap(paperWidth, paperHeight);
-let screen = paper.g(
-    paper.rect(65, 65, screenWidth, screenHeight).attr({     // shadow
-            fill: "rgba(50, 50, 50, 0.2)",
-            rx: 10,
-            ry: 10
-        }),
-    paper.rect(50, 50, screenWidth, screenHeight).attr({
-            fill: "#E9E9D6",
-            rx: 10,
-            ry: 10
+let Rectangle = {
+    init: function(paper, x, y, shadow, shadowOffset, fill, width, height, rx, ry, animating, hoverDuration, hoverStrength) {
+        this._ = {
+            paper: paper || null,
+            self: null,
+            set: null,
+            intervalId: null,
+            XY: {
+                x: x || 0,
+                y: y || 0
+            },
+            shadowOffset: shadowOffset || {
+                x: 15,
+                y: 15
+            },
+            shadow: shadow || false,
+            fill: fill || "#000",
+            width: width || 100,
+            height: height || 100,
+            rx: rx || 10,
+            ry: ry || 10,
+            animating: animating || false,
+            hoverDuration: hoverDuration || 1200,
+            hoverStrength: hoverStrength || 10
+        }
+        this._.self = this._.paper.g(),
+        this._.set = Snap.set()
+    },
+    build: function() {
+        if (this._.paper) {
+            if (this._.shadow) {
+                let bg = Snap().rect(
+                    this._.XY.x + this._.shadowOffset.x,
+                    this._.XY.y + this._.shadowOffset.y,
+                    this._.width,
+                    this._.height)
+                    .attr(
+                        {
+                        fill: "rgba(50, 50, 50, 0.2)",
+                        rx: this._.rx,
+                        ry: this._.ry
+                    }
+                )
+                this._.self.add(bg)
+                this._.set.push(bg)
+            }
+            let fg = Snap().rect(
+                this._.XY.x,
+                this._.XY.y,
+                this._.width,
+                this._.height)
+                .attr(
+                    {
+                    fill: this._.fill,
+                    rx: this._.rx,
+                    ry: this._.ry
+                }
+            )
+            this._.self.add(fg)
+            this._.set.push(fg)
+        }
+        return true;
+    },
+    move: function($x, $y) {
+        // Moves the rectangle and its shadow $x units to the right
+        // and $y units down. Use negative numbers for moving left
+        // and up.
+        this._.XY.x = $x;
+        this._.XY.y = $y;
+        this._.set.forEach(function(e) {
+            e.attr({
+                x: parseFloat(e.attr('x')) + $x,
+                y: parseFloat(e.attr('y')) + $y
+            })
+        });
+        return true;
+    },
+    resize: function(w, h) {
+        this._.set.forEach(function(e) {
+            e.attr({
+                width: w,
+                height: h
+            })
+        });
+        return true;
+    },
+    // hover: function() {
+    //     this._.set.forEach(function(e) {
+    //         e.animate({y: parseFloat(e.attr('y')) + 20}, 1000, mina.easeinout, function() {
+    //             e.animate({y: parseFloat(e.attr('y')) - 20}, 1000, mina.easeinout)
+    //         })
+    //     });
+    // },
+    animOn: function(set, duration, strength) {
+        set.forEach(function(e){
+            e.animate({y: parseFloat(e.attr('y')) + strength}, duration / 2, mina.easeinout, function() {
+                e.animate({y: parseFloat(e.attr('y')) - strength}, duration / 2, mina.easeinout)
+            })
         })
-);
-
-
-let banner = paper.g(
-    paper.rect(
-        screen[0].getBBox().x + screenWidth * 0.04,
-        screen[0].getBBox().y + screenHeight * 0.03,
-        screenWidth * 0.9,
-        screenHeight * 0.14
-    ).attr({ // shadow
-        fill: "rgba(50, 50, 50, 0.2)",
-        rx: 10,
-        ry: 10
-    }), paper.rect(
-        screen[1].getBBox().x + screenWidth * 0.04,
-        screen[1].getBBox().y + screenHeight * 0.03,
-        screenWidth * 0.9,
-        screenHeight * 0.14
-    ).attr({ //top
-        fill: "#389840",
-        rx: 10,
-        ry: 10
-    })
-)
-let navLinks = {
-    desktop: function() {paper.g(
-        paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.58,
-            screen[1].getBBox().y + screenHeight * 0.13,
-            screenWidth * 0.07,
-            screenHeight * 0.02
-        ).attr({"fill": "#C1C7C2", rx: 6, ry: 6}),
-        paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.66,
-            screen[1].getBBox().y + screenHeight * 0.13,
-            screenWidth * 0.07,
-            screenHeight * 0.02
-        ).attr({"fill": "#C1C7C2", rx: 6, ry: 6}),
-        paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.74,
-            screen[1].getBBox().y + screenHeight * 0.13,
-            screenWidth * 0.07,
-            screenHeight * 0.02
-        ).attr({"fill": "#C1C7C2", rx: 6, ry: 6}),
-        paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.82,
-            screen[1].getBBox().y + screenHeight * 0.13,
-            screenWidth * 0.07,
-            screenHeight * 0.02
-        ).attr({"fill": "#C1C7C2", rx: 6, ry: 6})
-    )},
-    mobile: function() {paper.g(
-        paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.82,
-            screen[1].getBBox().y + screenHeight * 0.12,
-            screenWidth * 0.07,
-            screenHeight * 0.04
-        ).attr({"fill": "#C1C7C2", rx: 2, ry: 2}),
-        paper.g(
-            paper.rect(
-                screen[1].getBBox().x + screenWidth * 0.835,
-                screen[1].getBBox().y + screenHeight * 0.125,
-                screenWidth * 0.04,
-                screenHeight * 0.008
-            ).attr({"fill": "#919191", rx: 2, ry: 2}),
-            paper.rect(
-                screen[1].getBBox().x + screenWidth * 0.835,
-                screen[1].getBBox().y + screenHeight * 0.135,
-                screenWidth * 0.04,
-                screenHeight * 0.008
-            ).attr({"fill": "#919191", rx: 2, ry: 2}),
-            paper.rect(
-                screen[1].getBBox().x + screenWidth * 0.835,
-                screen[1].getBBox().y + screenHeight * 0.145,
-                screenWidth * 0.04,
-                screenHeight * 0.008
-            ).attr({"fill": "#919191", rx: 2, ry: 2}),
-        )
-    )}
-};
-if (paperWidth <= 600) {
-    banner.append(navLinks.mobile());
-} else {
-    banner.append(navLinks.desktop());
-}
-
-let logo = paper.g(
-    paper.rect(
-        screen[0].getBBox().x + screenWidth * 0.05,
-        screen[0].getBBox().y + screenHeight * 0.05,
-        screenWidth * 0.3,
-        screenHeight * 0.1
-    ).attr({ // shadow
-        fill: "rgba(50, 50, 50, 0.2)",
-        rx: 10,
-        ry: 10
-    }), paper.rect(
-        screen[1].getBBox().x + screenWidth * 0.05,
-        screen[1].getBBox().y + screenHeight * 0.05,
-        screenWidth * 0.3,
-        screenHeight * 0.1
-    ).attr({ //top
-        fill: "#95650D",
-        rx: 10,
-        ry: 10
-    })
-);
-let panel = paper.g(
-    paper.rect(
-        screen[0].getBBox().x + screenWidth * 0.04,
-        screen[0].getBBox().y + screenHeight * 0.2,
-        screenWidth * 0.7,
-        screenHeight * 0.75
-    ).attr({ // shadow
-        fill: "rgba(50, 50, 50, 0.2)",
-        rx: 10,
-        ry: 10
-    }), paper.rect(
-        screen[1].getBBox().x + screenWidth * 0.04,
-        screen[1].getBBox().y + screenHeight * 0.2,
-        screenWidth * 0.7,
-        screenHeight * 0.75
-    ).attr({ //top
-        fill: "#E7E7E7",
-        rx: 10,
-        ry: 10
-    }),
-    paper.g(
-        paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.08,
-            screen[1].getBBox().y + screenHeight * 0.24 ,
-            screenWidth * 0.4,
-            screenHeight * 0.04
-        ).attr({"fill": "#919191", rx: 6, ry: 6}),
-        paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.08,
-            screen[1].getBBox().y + screenHeight * 0.58,
-            screenWidth * 0.4,
-            screenHeight * 0.04
-        ).attr({"fill": "#919191", rx: 6, ry: 6})
-    )
-)
-
-
-for(let i = 0; i < 5; i++) {
-    let l;
-    if (i % 2 === 0) {
-        l = paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.08,
-            screen[1].getBBox().y + screenHeight * 0.32 + (i * 30),
-            screenWidth * 0.55,
-            screenHeight * 0.02
-        ).attr({"fill": "#C1C7C2", rx: 6, ry: 6});
-    } else {
-        l = paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.08,
-            screen[1].getBBox().y + screenHeight * 0.32 + (i * 30),
-            screenWidth * 0.62,
-            screenHeight * 0.02
-        ).attr({"fill": "#C1C7C2", rx: 6, ry: 6});
+    },
+    hover: function() {
+        self = this;
+        let duration = this._.hoverDuration;
+        let strength = this._.hoverStrength;
+        if(this._.animating) {
+            this._.intervalId = setInterval(this.animOn, duration, self._.set, duration, strength)
+        }
+    },
+    stopAnimation: function(w, h) {
+        this._.animating = false;
+        clearInterval(this._.intervalId);
+        return true;
     }
-    panel.append(l);
 }
-
-for(let i = 0; i < 5; i++) {
-    let l;
-    if (i % 2 === 0) {
-        l = paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.08,
-            screen[1].getBBox().y + screenHeight * 0.66 + (i * 30),
-            screenWidth * 0.55,
-            screenHeight * 0.02
-        ).attr({"fill": "#C1C7C2", rx: 6, ry: 6});
-    } else {
-        l = paper.rect(
-            screen[1].getBBox().x + screenWidth * 0.08,
-            screen[1].getBBox().y + screenHeight * 0.66 + (i * 30),
-            screenWidth * 0.62,
-            screenHeight * 0.02
-        ).attr({"fill": "#C1C7C2", rx: 6, ry: 6});
+let Circle = {
+    init: function(paper, x, y, r, shadow, shadowOffset, fill, animating, hoverDuration, hoverStrength) {
+        this._ = {
+            paper: paper || null,
+            self: null,
+            set: null,
+            intervalId: null,
+            XYR: {
+                x: x || 0,
+                y: y || 0,
+                r: r || 5
+            },
+            shadowOffset: shadowOffset || {
+                x: 15,
+                y: 15
+            },
+            shadow: shadow || false,
+            fill: fill || "#000",
+            animating: animating || false,
+            hoverDuration: hoverDuration || 1200,
+            hoverStrength: hoverStrength || 10
+        }
+        this._.self = this._.paper.g(),
+        this._.set = Snap.set()
+    },
+    build: function() {
+        if (this._.paper) {
+            if (this._.shadow) {
+                let bg = Snap().circle(
+                    this._.XYR.x + this._.shadowOffset.x,
+                    this._.XYR.y + this._.shadowOffset.y,
+                    this._.XYR.r)
+                    .attr(
+                        {
+                        fill: "rgba(50, 50, 50, 0.2)",
+                    }
+                )
+                this._.self.add(bg)
+                this._.set.push(bg)
+            }
+            let fg = Snap().circle(
+                this._.XYR.x,
+                this._.XYR.y,
+                this._.XYR.r)
+                .attr(
+                    {
+                    fill: this._.fill,
+                }
+            )
+            this._.self.add(fg)
+            this._.set.push(fg)
+        }
+        return true;
+    },
+    move: function($x, $y) {
+        // Moves the rectangle and its shadow $x units to the right
+        // and $y units down. Use negative numbers for moving left
+        // and up.
+        this._.XYR.x = $x;
+        this._.XYR.y = $y;
+        this._.set.forEach(function(e) {
+            e.attr({
+                x: parseFloat(e.attr('x')) + $x,
+                y: parseFloat(e.attr('y')) + $y
+            })
+        });
+        return true;
+    },
+    resize: function($r) {
+        this._.set.forEach(function(e) {
+            e.attr({
+                r: $r,
+            })
+        });
+        return true;
+    },
+    animOn: function(set, duration, strength) {
+        set.forEach(function(e){
+            e.animate({cy: parseFloat(e.attr('cy')) + strength}, duration / 2, mina.easeinout, function() {
+                e.animate({cy: parseFloat(e.attr('cy')) - strength}, duration / 2, mina.easeinout)
+            })
+        })
+    },
+    hover: function() {
+        self = this;
+        let duration = this._.hoverDuration;
+        let strength = this._.hoverStrength;
+        if(this._.animating) {
+            this._.intervalId = setInterval(this.animOn, duration, self._.set, duration, strength)
+        }
+    },
+    stopAnimation: function(w, h) {
+        this._.animating = false;
+        clearInterval(this._.intervalId);
+        return true;
     }
-    panel.append(l);
 }
 
-window.paper = paper;
+let MockText = {
+    init: function(paper, x, y, title, titleLineShade, lineDirection, lineWidth, lineHeight, lines, lineSpacing, fill, rx, ry, animating, hoverDuration, hoverStrength) {
+        this._ = {
+            paper: paper || null,
+            self: null,
+            set: null,
+            intervalId: null,
+            XY: {
+                x: x || 0,
+                y: y || 0,
+            },
+            title: title || false,
+            titleLineShade: titleLineShade || "#000",
+            lineDirection: lineDirection || 'vertical',
+            lineWidth: lineWidth || 20,
+            lineHeight: lineHeight || 4,
+            lines: lines || 1,
+            lineSpacing: lineSpacing || 1,
+            fill: fill || "#000",
+            rx: rx || 4,
+            ry: ry || 4,
+            animating: animating || false,
+            hoverDuration: hoverDuration || 1200,
+            hoverStrength: hoverStrength || 10
+        }
+        this._.self = this._.paper.g(),
+        this._.set = Snap.set()
+    },
+    build: function() {
+        if (this._.paper) {
+            for(let i = 0; i < this._.lines; i++) {
+                let line;
+                let titleLineShade;
+                if(this._.title && i === 0){
+                    line = Snap().rect(
+                        this._.XY.x,
+                        this._.XY.y,
+                        this._.lineWidth * 0.6,
+                        this._.lineHeight * 1.6)
+                        .attr(
+                            {
+                            fill: this._.titleLineShade,
+                            rx: this._.rx,
+                            ry: this._.ry
+                        }
+                    )                    
+                } else if(i % 2 == 0) {
+                    line = Snap().rect(
+                        this._.XY.x,
+                        this._.XY.y + (this._.lineSpacing * i),
+                        this._.lineWidth * 0.9,
+                        this._.lineHeight)
+                        .attr(
+                            {
+                            fill: this._.fill,
+                            rx: this._.rx,
+                            ry: this._.ry
+                        }
+                    )
+                } else {
+                    line = Snap().rect(
+                        this._.XY.x,
+                        this._.XY.y + (this._.lineSpacing * i),
+                        this._.lineWidth,
+                        this._.lineHeight)
+                        .attr(
+                            {
+                            fill: this._.fill,
+                            rx: this._.rx,
+                            ry: this._.ry
+                        }
+                    )
+                }
+                this._.self.add(line)
+                this._.set.push(line)
+            }
 
-// let s = Screen.rect(20, 20, 300, 200)
+        }
+        return true;
+    },
+    move: function($x, $y) {
+        // Moves the rectangle and its shadow $x units to the right
+        // and $y units down. Use negative numbers for moving left
+        // and up.
+        this._.XYR.x = $x;
+        this._.XYR.y = $y;
+        this._.set.forEach(function(e) {
+            e.attr({
+                x: parseFloat(e.attr('x')) + $x,
+                y: parseFloat(e.attr('y')) + $y
+            })
+        });
+        return true;
+    },
+    resize: function($r) {
+        this._.set.forEach(function(e) {
+            e.attr({
+                r: $r,
+            })
+        });
+        return true;
+    },
+    animOn: function(set, duration, strength) {
+        set.forEach(function(e){
+            e.animate({y: parseFloat(e.attr('y')) + strength}, duration / 2, mina.easeinout, function() {
+                e.animate({y: parseFloat(e.attr('y')) - strength}, duration / 2, mina.easeinout)
+            })
+        })
+    },
+    hover: function() {
+        self = this;
+        let duration = this._.hoverDuration;
+        let strength = this._.hoverStrength;
+        if(this._.animating) {
+            this._.intervalId = setInterval(this.animOn, duration, self._.set, duration, strength)
+        }
+    },
+    stopAnimation: function(w, h) {
+        this._.animating = false;
+        clearInterval(this._.intervalId);
+        return true;
+    }
+}
+
+
+// var rect2 = Object.create(Rectangle);
+// rect2.init($paper, 0, 0, true, {x: 15, y: 15}, '#389840', 300, 200, 10, 10, true, 1200, 30);
+// rect2.build();
+// rect2.hover();
+
+// var rect = Object.create(Rectangle);
+// rect.init($paper, 500, 0, true, {x: 50, y: 50}, '#389840', 300, 200, 10, 10, true, 1100, 30);
+// rect.build();
+// rect.hover();
+
+// window.rect = rect;
+// window.rect2 = rect2;
+
+
+
+
+// var c3 = Object.create(Circle);
+// c3.init($paper, 500, 500, 60, true, {x: 15, y: 15}, 'red', true, 1100, 30);
+// c3.build();
+// c3.hover();
+
+// var c2 = Object.create(Circle);
+// c2.init($paper, 500, 500, 30, false, {x: 15, y: 15}, 'white', true, 1100, 30);
+// c2.build();
+// c2.hover();
+
+// var circle = Object.create(Circle);
+// circle.init($paper, 500, 500, 10, false, {x: 15, y: 15}, 'red', true, 1100,500);
+// circle.build();
+// circle.hover();
+
+// var logo = Snap.set(circle, c2, c3);
+
+// window.circle = circle;
+// window.logo = logo;
+
+// var text = Object.create(MockText);
+// text.init($paper, 100, 400, true, 'darkred', 450, 10, 10, 10, 'red', 6, 6, true, 1100, 100)    
+// // paper, x, y, title, titleLineShade, lineWidth, lineHeight, lines, lineSpacing, fill, rx, ry, animating, hoverDuration
+// text.build();
+// text.hover();
+
+var createView = function() {
+    var screen = Object.create(Rectangle);
+    screen.init($paper, 10, 10, true, {x: 15, y: 15}, '#D2CBB1', 800, 600, 10, 10, true, 1200, 10);
+    screen.build();
+    screen.hover();
+
+    var banner = Object.create(Rectangle);
+    banner.init($paper, 60, 30, true, {x: 15, y: 15}, '#1F6217', 700, 120, 10, 10, true, 1100, 10);
+    banner.build();
+    banner.hover();
+
+    // Nav
+    var nav1 = Object.create(MockText);
+    nav1.init($paper, 70, 180, true, '#515750', 'vertical', 450, 10, 6, 10, '#B7BCB7', 6, 6, true, 1150, 10)
+    nav1.build();
+    nav1.hover();
+
+    var textArea = Object.create(Rectangle);
+    textArea.init($paper, 60, 170, true, {x: 15, y: 15}, '#ECEDEC', 500, 400, 10, 10, true, 1150, 10);
+    textArea.build();
+    textArea.hover();
+
+    var lines1 = Object.create(MockText);
+    lines1.init($paper, 70, 180, true, '#515750', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1150, 10)
+    lines1.build();
+    lines1.hover();
+
+    var lines2 = Object.create(MockText);
+    lines2.init($paper, 70, 370, true, '#515750', 'vertical', 450, 10, 6, 32, '#B7BCB7', 6, 6, true, 1150, 10)
+    lines2.build();
+    lines2.hover();
+
+}();
+
+
+
+
 
 $( document ).ready( function() {
     const $body = $( document.body );
