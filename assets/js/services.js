@@ -74,8 +74,20 @@ brownOrange.set({
     accentd: "#FFCDBD",
     textl: "#212121",
     textd: "#757575"
-})
-let palettes = [amberGreen, blueGrayPurple, brownOrange]
+});
+let indigoPink = Object.create(ColorPalette)
+indigoPink.init('Indigo Pink');
+indigoPink.set({
+    primaryn: "#3F51B5",
+    primaryl: "#C5CAE9",
+    primaryd: "#303F9F",
+    accentn: "#FF4081",
+    accentl: "#FFC6D9",
+    accentd: "#FF1C51",
+    textl: "#212121",
+    textd: "#757575"
+});
+let palettes = [amberGreen, blueGrayPurple, brownOrange, indigoPink]
 
 
 
