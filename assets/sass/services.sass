@@ -1,0 +1,25 @@
+$hover-value: 6px
+
+.svg-rect,
+.svg-rect-shadow
+  transition: fill 1s, width 1s, height 1s, x 1s, y 1s
+
+
+.svg-circle,
+.svg-circle-shadow,
+  transition: fill 1s, r 1s, cx 1s, cy 1s,
+  
+
+.hover-animation
+  animation-name: hoverAnimation
+  animation-iteration-count: infinite
+  animation-duration: 2s
+  animation-timing-function: ease-in-out
+
+@keyframes hoverAnimation
+  0%
+    transform: translateY(0)
+  50%
+    transform: translateY($hover-value)
+  100%
+    transform: translateY(0)
