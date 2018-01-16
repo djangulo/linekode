@@ -4,14 +4,6 @@ import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist
 
 import $ from 'jquery';
 
-// Skeleton views for different websites offered
-
-// Build a blog, initially, later i can morph into others as needed
-// - header banner
-// - nav under banner
-// - left column
-// - picture on right with small text running along
-
 let ColorPalette = {
     init: function(name) {
         this.name = name || "";
@@ -114,7 +106,10 @@ let Shape = {
             animationDelay: config.animationDelay || 0,
             lineSpacing: config.lineSpacing || 1,
             lineCount: config.lineCount || 1,
-            lineDirection: config.lineDirection || 'vertical'
+            lineDirection: config.lineDirection || 'vertical',
+            text: config.text || '',
+            fontSize: config.fontSize || 8,
+            fontFamily: config.fontFamily || 'open-sans'
         }
         this._.self = this._.paper.g(),
         this._.set = Snap.set()
@@ -126,7 +121,7 @@ let Shape = {
         // and up.
         this._.x = $x;
         this._.y = $y;
-        if (this._.self[0].type === 'rect') {
+        if (this._.self[0].type === 'rect' || this._.self[0].type === 'text') {
             this._.set.forEach(function(e) {
                 e.attr({
                     x: parseFloat(e.attr('x')) + $x,
@@ -194,6 +189,23 @@ let Shape = {
         this._.set.forEach(function(e) {
             e.removeClass('hover-animation');
         })
+    }
+}
+let RealText = Object.create(Shape);
+RealText.build = function() {
+    if(this._.paper) {
+        let fg = Snap().text(
+            this._.x,
+            this._.y,
+            this._.text
+        ).attr({
+            'font-size': this._.fontSize,
+            'font-family': this._.fontFamily,
+            fill: this._.fill
+        }).addClass('svg-text');
+        window.text = fg;
+        this._.self.add(fg);
+        this._.set.push(fg);
     }
 }
 let Rectangle = Object.create(Shape);
@@ -338,8 +350,14 @@ MockText.recolor =  function(color=null, titleColor=null) {
     return true;
 }
 
+// BlogConfig:
+// - header banner
+// - nav bottom right
+// - textarea
+// - aside with picture
 var blogViewConfig = {
     screen: {
+        parent: Rectangle,
         x: 10,
         y: 10,
         shadow: true,
@@ -349,6 +367,7 @@ var blogViewConfig = {
         animationDelay: 0
     },
     banner: {
+        parent: Rectangle,
         x: 60,
         y: 30,
         shadow: true,
@@ -357,7 +376,18 @@ var blogViewConfig = {
         height: 120,
         animationDelay: 0.1
     },
+    bannerText: {
+        parent: RealText,
+        x: 100,
+        y: 120,
+        text: "Blog",
+        fill: palettes[0].palette.accentn,
+        animationDelay: 0.1,
+        fontSize: 100,
+        fontFamily: 'Verdana'
+    },
     bannerNav: {
+        parent: MockText,
         x: 520,
         y: 120,
         fill: palettes[0].palette.primaryl,
@@ -372,6 +402,7 @@ var blogViewConfig = {
         ry: 5
     },
     textArea: {
+        parent: Rectangle,
         x: 60,
         y: 170,
         fill: palettes[0].palette.accentl,
@@ -381,6 +412,7 @@ var blogViewConfig = {
         animationDelay: 0.3,
     },
     lines1: {
+        parent: MockText,
         x: 70,
         y: 180,
         fill: palettes[0].palette.textd,
@@ -395,6 +427,7 @@ var blogViewConfig = {
         ry: 5
     },
     lines2: {
+        parent: MockText,
         x: 70,
         y: 370,
         fill: palettes[0].palette.textd,
@@ -409,6 +442,7 @@ var blogViewConfig = {
         ry: 5
     },
     aside: {
+        parent: Rectangle,
         x: 600,
         y: 170,
         fill: palettes[0].palette.accentl,
@@ -418,6 +452,7 @@ var blogViewConfig = {
         animationDelay: 0.5,
     },
     asidePicture: {
+        parent: Rectangle,
         x: 620,
         y: 180,
         fill: palettes[0].palette.accentd,
@@ -427,6 +462,7 @@ var blogViewConfig = {
         animationDelay: 0.5,
     },
     asideText: {
+        parent: MockText,
         x: 620,
         y: 300,
         fill: palettes[0].palette.textd,
@@ -439,49 +475,68 @@ var blogViewConfig = {
         ry: 6
     },
 }
+// CatalogueConfig:
+// - header banner
+// - big picture in center
+//      - pictures scrolling right to left
+//      - thumbnails below big picture
 
 let viewManager = {
     currentPalette: palettes[0],
-    init: function() {
-        this.objects = {
-            screen: Object.create(Rectangle),
-            banner: Object.create(Rectangle),
-            bannerNav: Object.create(Rectangle),
-            textArea: Object.create(Rectangle),
-            lines1: Object.create(MockText),
-            lines2: Object.create(MockText),
-            aside: Object.create(Rectangle),
-            asidePicture: Object.create(Rectangle),
-            asideText: Object.create(MockText)           
+    init: function(config) {
+        this.objects = {};
+        for (let obj in config) {
+            this.objects[obj] = Object.create(config[obj].parent)
         }
+        //     screen: Object.create(Rectangle),
+        //     banner: Object.create(Rectangle),
+        //     bannerNav: Object.create(Rectangle),
+        //     textArea: Object.create(Rectangle),
+        //     lines1: Object.create(MockText),
+        //     lines2: Object.create(MockText),
+        //     aside: Object.create(Rectangle),
+        //     asidePicture: Object.create(Rectangle),
+        //     asideText: Object.create(MockText)           
+        // }
     },
     build: function(paper, config) {
-        for (let obj in this.objects) {
+        for (let obj in config) {
             this.objects[obj].init(paper, config[obj]);
             this.objects[obj].build();
             this.objects[obj].animOn();
         }
     },
-    recolor: function() {
+    recolor: function(objectSet) {
+        // recolors based on the objectSet passed; options are:
+        // - blog
+        // - catalogue
+        // - ecommerce
+        // - webapp
         this.colors = {
-            screen: { fill: "lightgrey" },
-            banner: { fill: this.currentPalette.palette.primaryn },
-            bannerNav: { fill: this.currentPalette.palette.primaryl },
-            textArea: {fill: this.currentPalette.palette.primaryl },
-            lines1: {
-                fill: this.currentPalette.palette.textd,
-                shadowFill: this.currentPalette.palette.accentn,
-            },
-            lines2: {
-                fill: this.currentPalette.palette.textd,
-                shadowFill: this.currentPalette.palette.accentn,
-            },
-            aside: { fill: this.currentPalette.palette.primaryl },
-            asidePicture: { fill: this.currentPalette.palette.primaryd },
-            asideText: { fill: this.currentPalette.palette.textd }
+            blog: {
+                screen: { fill: "lightgrey" },
+                banner: { fill: this.currentPalette.palette.primaryn },
+                bannerNav: { fill: this.currentPalette.palette.primaryl },
+                bannerText: { fill: this.currentPalette.palette.accentn },
+                textArea: {fill: this.currentPalette.palette.primaryl },
+                lines1: {
+                    fill: this.currentPalette.palette.textd,
+                    shadowFill: this.currentPalette.palette.accentn,
+                },
+                lines2: {
+                    fill: this.currentPalette.palette.textd,
+                    shadowFill: this.currentPalette.palette.accentn,
+                },
+                aside: { fill: this.currentPalette.palette.primaryl },
+                asidePicture: { fill: this.currentPalette.palette.primaryd },
+                asideText: { fill: this.currentPalette.palette.textd }
+            }
         }
         for (let obj in this.objects) {
-            this.objects[obj].recolor(this.colors[obj].fill, this.colors[obj].shadowFill);
+            this.objects[obj].recolor(
+                this.colors[objectSet][obj].fill,
+                this.colors[objectSet][obj].shadowFill
+            );
         }
     },
     reshape: function(config) {
@@ -502,19 +557,19 @@ window.$paper = $paper;
 
 $( document ).ready( function() {
     const $body = $( document.body );
-    viewManager.init();
+    viewManager.init(blogViewConfig);
     viewManager.build($paper, blogViewConfig);
     let i;
     setInterval(function(){
-        i = palettes.indexOf(createBlogView.currentPalette);
+        i = palettes.indexOf(viewManager.currentPalette);
         if ((i+1) == palettes.length) {
-            createBlogView.currentPalette = palettes[0];
+            viewManager.currentPalette = palettes[0];
         } else {
-            createBlogView.currentPalette = palettes[i + 1];
+            viewManager.currentPalette = palettes[i + 1];
         }
-        createBlogView.recolor();
+        viewManager.recolor('blog');
     }, 5000)
-
+    window.paper = $paper;
     // $(window).resize(function(){
     //     this.paperWidth = window.innerWidth * 0.9;
     //     this.paperHeight = window.innerHeight * 0.9;
