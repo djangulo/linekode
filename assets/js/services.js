@@ -63,6 +63,7 @@ brownOrange.set({
     primaryd: "#5D4037",
     accentn: "#FF5722",
     accentl: "#FF2C0C",
+    "post-form": './assets/js/post-form.js',
     accentd: "#FFCDBD",
     textl: "#212121",
     textd: "#757575"
@@ -97,6 +98,8 @@ let Shape = {
             },
             shadow: config.shadow || false, // takes place of "title" row in MockText
             shadowFill: config.shadowFill || "rgba(50, 50, 50, 0.2)", // MockText's "title" color
+            stroke: config.stroke || "#000",
+            strokeWidth: config.strokeWidth || 1,
             fill: config.fill || "#000",
             width: config.width || 100,
             height: config.height || 100,
@@ -141,6 +144,47 @@ let Shape = {
             return false
         }
     },
+    moveAbsolute: function($x, $y) {
+        // Moves the rectangle and its shadow $x units to the right
+        // and $y units down. Use negative numbers for moving left
+        // and up.
+        self = this;
+        if (this._.self[0].type === 'rect' || this._.self[0].type === 'text') {
+            this._.set.forEach(function(e) {
+                if (e.hasClass('svg-rect-shadow')) {
+                    e.attr({
+                        x: $x + self._.shadowOffset.x,
+                        y: $y + self._.shadowOffset.y
+                    })
+                } else {
+                    e.attr({
+                        x: $x,
+                        y: $y
+                    })
+                }
+            });
+            return
+        } else if (this._.self[0].type === 'circle') {
+            this._.set.forEach(function(e) {
+                if (e.hasClass('svg-circle-shadow')) {
+                    e.attr({
+                        cx: $x + self._.shadowOffset.x,
+                        cy: $y + self._.shadowOffset.y
+                    })
+                } else {
+                    e.attr({
+                        cx: $x,
+                        cy: $y
+                    })
+                }
+            });
+            return
+        } else {
+            return false
+        }
+        this._.x = $x;
+        this._.y = $y;
+    },
     resize: function(wr=null, h=null) {
         if (this._.self[0].type === 'rect') {
             this._.set.forEach(function(e) {
@@ -156,7 +200,7 @@ let Shape = {
         }
     },
     recolor: function(color=null, strokeColor=null) {
-        if (color) {
+        if (color !== null) {
             this._.set.forEach(function(e) {
                 if ( !( e.hasClass('svg-rect-shadow') || e.hasClass('svg-circle-shadow') ) ) {
                     e.attr({fill: color})
@@ -167,6 +211,22 @@ let Shape = {
             this._.set.forEach(function(e) {
                 if ( !( e.hasClass('svg-rect-shadow') || e.hasClass('svg-circle-shadow') ) ) {
                     e.attr({stroke: strokeColor})
+                }
+            })
+        }
+    },
+    restroke: function(fill=null, width=null) {
+        if (fill !== null) {
+            this._.set.forEach(function(e) {
+                if ( !( e.hasClass('svg-rect-shadow') || e.hasClass('svg-circle-shadow') ) ) {
+                    e.attr({stroke: fill});
+                }
+            })
+        }
+        if (width !== null) {
+            this._.set.forEach(function(e) {
+                if ( !( e.hasClass('svg-rect-shadow') || e.hasClass('svg-circle-shadow') ) ) {
+                    e.attr({strokeWidth: width});
                 }
             })
         }
@@ -185,9 +245,26 @@ let Shape = {
             })
         }
     },
+    changeText: function(text) {
+        if (this._.self[0].type === 'text') {
+            this._.set.forEach(function(e) {
+                e.attr({text: text});
+            })
+        }
+    },
     animOff: function() {
         this._.set.forEach(function(e) {
             e.removeClass('hover-animation');
+        })
+    },
+    destroy: function() {
+        this._.set.forEach(function(e) {
+            if (e.type === 'circle') {
+                e.animate({cx: 1000}, 1000, mina.easeInOut, e.remove);
+            }
+            if (e.type === 'rect' || e.type === 'text') {
+                e.animate({x: 1000}, 500, mina.easeInOut, e.remove)
+            }
         })
     }
 }
@@ -204,6 +281,23 @@ RealText.build = function() {
             fill: this._.fill
         }).addClass('svg-text');
         window.text = fg;
+        this._.self.add(fg);
+        this._.set.push(fg);
+    }
+}
+
+let RealTextSmall = Object.create(Shape);
+RealTextSmall.build = function() {
+    if(this._.paper) {
+        let fg = Snap().text(
+            this._.x,
+            this._.y,
+            this._.text
+        ).attr({
+            'font-size': this._.fontSize,
+            'font-family': this._.fontFamily,
+            fill: this._.fill
+        }).addClass('svg-text-small');
         this._.self.add(fg);
         this._.set.push(fg);
     }
@@ -356,6 +450,7 @@ MockText.recolor =  function(color=null, titleColor=null) {
 // - textarea
 // - aside with picture
 var blogViewConfig = {
+    objectSet: 'blog',
     screen: {
         parent: Rectangle,
         x: 10,
@@ -480,36 +575,161 @@ var blogViewConfig = {
 // - big picture in center
 //      - pictures scrolling right to left
 //      - thumbnails below big picture
+var galleryViewConfig = {
+    objectSet: 'gallery',
+    screen: {
+        parent: Rectangle,
+        x: 10,
+        y: 10,
+        shadow: true,
+        fill: "lightgrey",
+        width: 800,
+        height: 600,
+        animationDelay: 0
+    },
+    banner: {
+        parent: Rectangle,
+        x: 60,
+        y: 30,
+        shadow: true,
+        fill: palettes[0].palette.primaryn,
+        width: 700,
+        height: 120,
+        animationDelay: 0.1
+    },
+    bannerText: {
+        parent: RealText,
+        x: 100,
+        y: 120,
+        text: "Picture",
+        fill: palettes[0].palette.accentn,
+        animationDelay: 0.1,
+        fontSize: 100,
+        fontFamily: 'Verdana'
+    },
+    bannerTextSmall: {
+        parent: RealTextSmall,
+        x: 240,
+        y: 140,
+        text: "gallery",
+        fill: palettes[0].palette.accentd,
+        animationDelay: 0.1,
+        fontSize: 50,
+        fontFamily: 'Verdana'
+    },
+    bannerNav: {
+        parent: MockText,
+        x: 520,
+        y: 120,
+        fill: palettes[0].palette.primaryl,
+        shadow: false,
+        lineDirection: 'horizontal',
+        lineCount: 4,
+        width: 45,
+        height: 10,
+        lineSpacing: 50,
+        animationDelay: 0.1,
+        rx: 5,
+        ry: 5
+    },
+    pictureArea: {
+        parent: Rectangle,
+        x: 60,
+        y: 170,
+        fill: palettes[0].palette.accentl,
+        shadow: true,
+        width: 700,
+        height: 260,
+        animationDelay: 0.3,
+    },
+    aside: {
+        parent: Rectangle,
+        x: 60,
+        y: 450,
+        fill: palettes[0].palette.accentl,
+        shadow: true,
+        width: 700,
+        height: 120,
+        animationDelay: 0.5,
+    },
+    asidePicture: {
+        parent: Rectangle,
+        x: 160,
+        y: 180,
+        fill: palettes[0].palette.primaryn,
+        shadow: true,
+        width: 500,
+        height: 220,
+        animationDelay: 0.3,
+    },
+    asidePicture1: {
+        parent: Rectangle,
+        x: 100,
+        y: 460,
+        fill: palettes[0].palette.primaryn,
+        shadow: true,
+        width: 140,
+        height: 100,
+        animationDelay: 0.5,
+    },
+    asidePicture2: {
+        parent: Rectangle,
+        x: 260,
+        y: 460,
+        fill: palettes[0].palette.accentd,
+        shadow: true,
+        width: 140,
+        height: 100,
+        animationDelay: 0.5,
+    },
+    asidePicture3: {
+        parent: Rectangle,
+        x: 420,
+        y: 460,
+        fill: palettes[0].palette.accentd,
+        shadow: true,
+        width: 140,
+        height: 100,
+        animationDelay: 0.5,
+    },
+    asidePicture4: {
+        parent: Rectangle,
+        x: 580,
+        y: 460,
+        fill: palettes[0].palette.accentd,
+        shadow: true,
+        width: 140,
+        height: 100,
+        animationDelay: 0.5,
+    },
+}
 
 let viewManager = {
     currentPalette: palettes[0],
+    currentConfig: {},
     init: function(config) {
         this.objects = {};
+        this.currentConfig = config;
         for (let obj in config) {
-            this.objects[obj] = Object.create(config[obj].parent)
-        }
-        //     screen: Object.create(Rectangle),
-        //     banner: Object.create(Rectangle),
-        //     bannerNav: Object.create(Rectangle),
-        //     textArea: Object.create(Rectangle),
-        //     lines1: Object.create(MockText),
-        //     lines2: Object.create(MockText),
-        //     aside: Object.create(Rectangle),
-        //     asidePicture: Object.create(Rectangle),
-        //     asideText: Object.create(MockText)           
-        // }
-    },
-    build: function(paper, config) {
-        for (let obj in config) {
-            this.objects[obj].init(paper, config[obj]);
-            this.objects[obj].build();
-            this.objects[obj].animOn();
+            if (obj !== 'objectSet') {
+                this.objects[obj] = Object.create(config[obj].parent)
+            }
         }
     },
-    recolor: function(objectSet) {
+    build: function(paper) {
+        this.paper = paper;
+        for (let obj in this.currentConfig) {
+            if (obj !== 'objectSet') {
+                this.objects[obj].init(paper, this.currentConfig[obj]);
+                this.objects[obj].build();
+                this.objects[obj].animOn();
+            }
+        }
+    },
+    _recolor: function(objectSet) {
         // recolors based on the objectSet passed; options are:
         // - blog
-        // - catalogue
+        // - gallery
         // - ecommerce
         // - webapp
         this.colors = {
@@ -530,17 +750,97 @@ let viewManager = {
                 aside: { fill: this.currentPalette.palette.primaryl },
                 asidePicture: { fill: this.currentPalette.palette.primaryd },
                 asideText: { fill: this.currentPalette.palette.textd }
+            },
+            gallery: {
+                screen: { fill: "lightgrey" },
+                banner: { fill: this.currentPalette.palette.primaryn },
+                bannerText: { fill: this.currentPalette.palette.accentn },
+                bannerTextSmall: { fill: this.currentPalette.palette.accentd },
+                bannerNav: { fill: this.currentPalette.palette.primaryl },
+                pictureArea: { fill: this.currentPalette.palette.accentl },
+                asidePicture: { fill: this.currentPalette.palette.primaryn },
+                aside: { fill: this.currentPalette.palette.accentl },
+                asidePicture1: { fill: this.currentPalette.palette.primaryn },
+                asidePicture2: { fill: this.currentPalette.palette.accentd },
+                asidePicture3: { fill: this.currentPalette.palette.accentd },
+                asidePicture4: { fill: this.currentPalette.palette.accentd },
             }
         }
         for (let obj in this.objects) {
-            this.objects[obj].recolor(
-                this.colors[objectSet][obj].fill,
-                this.colors[objectSet][obj].shadowFill
-            );
+            if (obj !== 'objectSet'){
+                this.objects[obj].recolor(
+                    this.colors[objectSet][obj].fill,
+                    this.colors[objectSet][obj].shadowFill
+                );
+            }
         }
     },
-    reshape: function(config) {
-
+    recolor: function() {
+        this._recolor(this.currentConfig.objectSet)
+    },
+    reshape: function(toConfig) {
+        // objectsets:
+        // blog:                Gallery
+            // screen:              screen
+            // banner:              banner
+            // bannerNav:           BannerNav
+            // bannerText:          BannerText
+            //                      BannerTextsmall
+            // textArea:            pictureArea
+            // lines1:              bigPicture1
+            // lines2: 
+            // aside:               ASIDE
+            // asidePicture:        aside1
+            // asideText:           aside2
+            //                      aside3
+            //                      aside4
+        for (let obj in this.currentConfig) {
+            if (!(obj in toConfig)) {
+                this.objects[obj].destroy();
+                delete this.objects[obj]
+            } else if (obj in toConfig && obj !== 'objectSet') {
+                let self = this;
+                    if (self.objects[obj]._.self[0].type === 'rect') {
+                        self.objects[obj].resize(
+                            toConfig[obj].width,
+                            toConfig[obj].height
+                        );
+                        self.objects[obj].moveAbsolute(
+                            toConfig[obj].x,
+                            toConfig[obj].y
+                        );
+                    } else if (self.objects[obj]._.self[0].type === 'text') {
+                        self.objects[obj].resize(
+                            toConfig[obj].width,
+                            toConfig[obj].height
+                        );
+                        self.objects[obj].moveAbsolute(
+                            toConfig[obj].x,
+                            toConfig[obj].y
+                        );
+                        self.objects[obj].changeText(toConfig[obj].text);
+                    } else if (self.objects[obj]._.self[0].type === 'circle') {
+                        self.objects[obj].resize(
+                            toConfig[obj].r
+                        );
+                        self.objects[obj].moveAbsolute(
+                            toConfig[obj].cx,
+                            toConfig[obj].cy
+                        );
+                    }
+            }
+            for (let obj in toConfig) {
+                if (!(obj in this.objects)) {
+                    if (obj !== 'objectSet') {
+                        this.objects[obj] = Object.create(toConfig[obj].parent);
+                        this.objects[obj].init(this.paper, toConfig[obj]);
+                        this.objects[obj].build();
+                        this.objects[obj].animOn();
+                    }
+                }
+            }
+            this.currentConfig = toConfig
+        }
     }
 }
 
@@ -549,27 +849,41 @@ let viewManager = {
 
 let paperWidth = 1000;
 let paperHeight = 1200;
-
-console.log('Initializing "paper" with w: ' + paperWidth + ', h: ' + paperHeight)
-const $paper = Snap(paperWidth, paperHeight);
-window.$paper = $paper;
-
-
+window.vm = viewManager
+window.confs = [blogViewConfig, galleryViewConfig]
 $( document ).ready( function() {
     const $body = $( document.body );
-    viewManager.init(blogViewConfig);
-    viewManager.build($paper, blogViewConfig);
+    console.log('Initializing "paper" with w: ' + paperWidth + ', h: ' + paperHeight)
+    const $paper = Snap('#services-svg').attr({
+        width: 1000,
+        height: 800
+    });
+    // window.vm.init(galleryViewConfig);
+    // window.vm.build($paper);
     let i;
-    setInterval(function(){
-        i = palettes.indexOf(viewManager.currentPalette);
-        if ((i+1) == palettes.length) {
-            viewManager.currentPalette = palettes[0];
-        } else {
-            viewManager.currentPalette = palettes[i + 1];
-        }
-        viewManager.recolor('blog');
-    }, 5000)
-    window.paper = $paper;
+    // viewManager.reshape(blogViewConfig);
+    
+    // setInterval(function(){
+    //     i = palettes.indexOf(window.vm.currentPalette);
+    //     if ((i+1) == palettes.length) {
+    //         window.vm.currentPalette = palettes[0];
+    //     } else {
+    //         window.vm.currentPalette = palettes[i + 1];
+    //     }
+    //     window.vm.recolor();
+    // }, 5000)
+    
+    let j
+    // setInterval(function(){
+    //     j = confs.indexOf(window.vm.currentConfig);
+    //     if ((j+1) == confs.length) {
+    //         window.vm.currentConfig = confs[0];
+    //     } else {
+    //         window.vm.currentConfig = confs[j + 1];
+    //     }
+    //     window.vm.reshape(window.vm.currentConfig);
+    // }, 5000)
+    
     // $(window).resize(function(){
     //     this.paperWidth = window.innerWidth * 0.9;
     //     this.paperHeight = window.innerHeight * 0.9;

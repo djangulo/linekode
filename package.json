@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack && python manage.py runserver",
+    "start": "webpack && ./env/bin/python manage.py collectstatic --no-input",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

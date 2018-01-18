@@ -29,9 +29,13 @@ urlpatterns = [
     path('api/v1/messages/', PostContactMessageAPIView.as_view(), name='post-message'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+urlpatterns += staticfiles_urlpatterns()
+
 urlpatterns += i18n_patterns(
     path('', views.home, name='home'),
 )
+
+# urlpatterns += staticfiles_urlpatterns()
 
 #  + static(
 #     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

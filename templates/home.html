@@ -12,14 +12,17 @@
     <head>
         <meta charset="utf-8">
         <title>Linekode | Home</title>
-        <script src="{% static 'js/lib/es6/ES6.js' %}"></script>
         <!-- <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script> -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i,800" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+        <link rel="stylesheet" href="{% static '/css/home.css' %}">
+        <link rel="stylesheet" href="{% static '/css/services.css' %}">
+        <script type="text/javascript" src="{% static 'js/home.bundle.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/services.bundle.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/scroll.bundle.js' %}"></script>
         <!--<link rel="stylesheet" href="{%  static 'css/responsive.css' %}">-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src='https://www.google.com/recaptcha/api.js?hl={{ LANGUAGE_CODE }}'></script>
@@ -33,7 +36,7 @@
                 <ul>
                     <li><a href="#">{% trans "Value" %}</a></li>
                     <li><a href="#">{% trans "Why?" %}</a></li>
-                    <li><a href="#">{% trans "Contact" %}</a></li>
+                    <li><a href="#services">{% trans "Services" %}</a></li>
                     <li><a href="#">{% trans "Work" %}</a></li>
                 </ul>
             </nav>
@@ -76,9 +79,9 @@
                     <li>H</li>
                 </ul>
             </section>
-            <div id="proof" class="block mustard">
-                testimonials
-            </div>
+            <section id="services" class="block services">
+                <svg id="services-svg"></svg>
+            </section>
             <!-- <div class="block burgundy">
                 chat with us
             </div> -->
@@ -123,7 +126,4 @@
         </div>
     </body>
     
-    <script src="{% static 'js/scroll.js' %}"></script>
-    <script src="{% static 'js/post-form.js' %}"></script>
-    <script src="{% static 'js/services.bundle.js.js' %}"></script>
 </html>

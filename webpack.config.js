@@ -7,10 +7,12 @@ const extractSass = new ExtractTextPlugin({
 })
 
 module.exports = {
-    watch: true,
+    watch: false,
     entry: {
         home: './assets/js/home.js',
-        services: './assets/js/services.js'
+        services: './assets/js/services.js',
+        "post-form": './assets/js/post-form.js',
+        scroll: './assets/js/scroll.js'
     },
     output: {
         filename: 'js/[name].bundle.js',

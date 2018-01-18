@@ -1,6 +1,6 @@
 const value = document.getElementById('value');
 const why = document.getElementById('why');
-const proof = document.getElementById('proof');
+const proof = document.getElementById('services');
 const work = document.getElementById('work');
 
 const navLinks = document.querySelectorAll('nav ul li a');
