@@ -8,6 +8,7 @@ let ColorPalette = {
     init: function(name) {
         this.name = name || "";
         this.palette = {
+            screen: "lightgrey",
             primaryn: "#000",
             primaryl: "#000",
             primaryd: "#000",
@@ -34,6 +35,7 @@ let ColorPalette = {
 let amberGreen = Object.create(ColorPalette)
 amberGreen.init('Amber Green');
 amberGreen.set({
+    screen: "lightgrey",
     primaryn: "#4CAF50",
     primaryl: "#C8E6C9",
     primaryd: "#388E3C",
@@ -46,6 +48,7 @@ amberGreen.set({
 let blueGrayPurple = Object.create(ColorPalette)
 blueGrayPurple.init('Blue-Gray Purple');
 blueGrayPurple.set({
+    screen: "lightgrey",
     primaryn: "#607D8B",
     primaryl: "#CFD8DC",
     primaryd: "#455A64",
@@ -58,12 +61,12 @@ blueGrayPurple.set({
 let brownOrange = Object.create(ColorPalette)
 brownOrange.init('Brown Orange');
 brownOrange.set({
+    screen: "lightgrey",
     primaryn: "#795548",
     primaryl: "#D7CCC8",
     primaryd: "#5D4037",
     accentn: "#FF5722",
     accentl: "#FF2C0C",
-    "post-form": './assets/js/post-form.js',
     accentd: "#FFCDBD",
     textl: "#212121",
     textd: "#757575"
@@ -71,6 +74,7 @@ brownOrange.set({
 let indigoPink = Object.create(ColorPalette)
 indigoPink.init('Indigo Pink');
 indigoPink.set({
+    screen: "lightgrey",
     primaryn: "#3F51B5",
     primaryl: "#C5CAE9",
     primaryd: "#303F9F",
@@ -199,18 +203,18 @@ let Shape = {
             return ;
         }
     },
-    recolor: function(color=null, strokeColor=null) {
-        if (color !== null) {
+    recolor: function(fill=null, shadowFill=null) {
+        if (fill !== null) {
             this._.set.forEach(function(e) {
                 if ( !( e.hasClass('svg-rect-shadow') || e.hasClass('svg-circle-shadow') ) ) {
-                    e.attr({fill: color})
+                    e.attr({fill: fill})
                 }
             })
         }
-        if (strokeColor) {
+        if (shadowFill !== null) {
             this._.set.forEach(function(e) {
                 if ( !( e.hasClass('svg-rect-shadow') || e.hasClass('svg-circle-shadow') ) ) {
-                    e.attr({stroke: strokeColor})
+                    e.attr({fill: shadowFill})
                 }
             })
         }
@@ -260,19 +264,19 @@ let Shape = {
     destroy: function() {
         this._.set.forEach(function(e) {
             if (e.type === 'circle') {
-                e.animate({cx: 1000}, 1000, mina.easeInOut, e.remove);
+                e.animate({cx: 2000}, 500, mina.easeinout, e.remove);
             }
             if (e.type === 'rect' || e.type === 'text') {
-                e.animate({x: 1000}, 500, mina.easeInOut, e.remove)
+                e.animate({x: 2000}, 500, mina.easeinout, e.remove)
             }
         })
     }
 }
 let RealText = Object.create(Shape);
 RealText.build = function() {
-    if(this._.paper) {
+    if(this._.paper !== null) {
         let fg = Snap().text(
-            this._.x,
+            this._.x - 1000,
             this._.y,
             this._.text
         ).attr({
@@ -283,6 +287,7 @@ RealText.build = function() {
         window.text = fg;
         this._.self.add(fg);
         this._.set.push(fg);
+        fg.animate({x: this._.x}, 500, mina.easeinout)
     }
 }
 
@@ -290,7 +295,7 @@ let RealTextSmall = Object.create(Shape);
 RealTextSmall.build = function() {
     if(this._.paper) {
         let fg = Snap().text(
-            this._.x,
+            this._.x - 1000,
             this._.y,
             this._.text
         ).attr({
@@ -300,6 +305,7 @@ RealTextSmall.build = function() {
         }).addClass('svg-text-small');
         this._.self.add(fg);
         this._.set.push(fg);
+        fg.animate({x: this._.x}, 500, mina.easeinout)
     }
 }
 let Rectangle = Object.create(Shape);
@@ -307,7 +313,7 @@ Rectangle.build = function() {
     if (this._.paper) {
         if (this._.shadow) {
             let bg = Snap().rect(
-                this._.x + this._.shadowOffset.x,
+                this._.x + this._.shadowOffset.x - 1000,
                 this._.y + this._.shadowOffset.y,
                 this._.width,
                 this._.height)
@@ -320,9 +326,10 @@ Rectangle.build = function() {
             ).addClass('svg-rect-shadow');
             this._.self.add(bg)
             this._.set.push(bg)
+            bg.animate({x: this._.x + this._.shadowOffset.x}, 500, mina.easeinout)
         }
         let fg = Snap().rect(
-            this._.x,
+            this._.x - 1000,
             this._.y,
             this._.width,
             this._.height)
@@ -335,6 +342,7 @@ Rectangle.build = function() {
         ).addClass('svg-rect');
         this._.self.add(fg)
         this._.set.push(fg)
+        fg.animate({x: this._.x}, 500, mina.easeinout)
     }
     return true;
 }
@@ -343,7 +351,7 @@ Circle.build = function() {
     if (this._.paper) {
         if (this._.shadow) {
             let bg = Snap().circle(
-                this._.x + this._.shadowOffset.x,
+                this._.x + this._.shadowOffset.x - 1000,
                 this._.y + this._.shadowOffset.y,
                 this._.r)
                 .attr(
@@ -353,9 +361,10 @@ Circle.build = function() {
             ).addClass('svg-circle-shadow');
             this._.self.add(bg)
             this._.set.push(bg)
+            bg.animate({x: this._.x + this._.shadowOffset.x}, 500, mina.easeinout)
         }
         let fg = Snap().circle(
-            this._.x,
+            this._.x - 1000,
             this._.y,
             this._.r)
             .attr(
@@ -365,6 +374,7 @@ Circle.build = function() {
         ).addClass('svg-circle');
         this._.self.add(fg)
         this._.set.push(fg)
+        bg.animate({x: this._.x}, 500, mina.easeinout)
     }
     return true;
 }
@@ -376,7 +386,7 @@ MockText.build = function() {
             if(this._.lineDirection == 'vertical') {
                 if(this._.shadow && i === 0){
                     line = Snap().rect(
-                        this._.x,
+                        this._.x - 1000,
                         this._.y,
                         this._.width * 0.6,
                         this._.height * 1.6)
@@ -389,7 +399,7 @@ MockText.build = function() {
                     ).addClass('svg-mock-text-title')
                 } else if(i % 2 == 0) {
                     line = Snap().rect(
-                        this._.x,
+                        this._.x - 1000,
                         this._.y + (this._.lineSpacing * i),
                         this._.width * 0.9,
                         this._.height)
@@ -402,7 +412,7 @@ MockText.build = function() {
                     ).addClass('svg-mock-text')
                 } else {
                     line = Snap().rect(
-                        this._.x,
+                        this._.x - 1000,
                         this._.y + (this._.lineSpacing * i),
                         this._.width,
                         this._.height)
@@ -416,7 +426,7 @@ MockText.build = function() {
                 }
             } else if(this._.lineDirection == 'horizontal') {
                 line = Snap().rect(
-                    this._.x + (this._.lineSpacing * i),
+                    this._.x + (this._.lineSpacing * i) - 1000,
                     this._.y,
                     this._.width,
                     this._.height)
@@ -430,6 +440,12 @@ MockText.build = function() {
             }
             this._.self.add(line)
             this._.set.push(line)
+            if (this._.lineDirection == 'vertical') {
+                line.animate({x: this._.x}, 500, mina.easeinout)
+            } else if (this._.lineDirection == 'horizontal') {
+                line.animate({x: this._.x + (this._.lineSpacing * i)}, 500, mina.easeinout)
+            }
+            
         }
     }
 }
@@ -456,7 +472,7 @@ var blogViewConfig = {
         x: 10,
         y: 10,
         shadow: true,
-        fill: "lightgrey",
+        fill: 'screen',
         width: 800,
         height: 600,
         animationDelay: 0
@@ -466,7 +482,7 @@ var blogViewConfig = {
         x: 60,
         y: 30,
         shadow: true,
-        fill: palettes[0].palette.primaryn,
+        fill: 'primaryn',
         width: 700,
         height: 120,
         animationDelay: 0.1
@@ -476,7 +492,7 @@ var blogViewConfig = {
         x: 100,
         y: 120,
         text: "Blog",
-        fill: palettes[0].palette.accentn,
+        fill: 'accentn',
         animationDelay: 0.1,
         fontSize: 100,
         fontFamily: 'Verdana'
@@ -485,7 +501,7 @@ var blogViewConfig = {
         parent: MockText,
         x: 520,
         y: 120,
-        fill: palettes[0].palette.primaryl,
+        fill: 'primaryl',
         shadow: false,
         lineDirection: 'horizontal',
         lineCount: 4,
@@ -500,7 +516,7 @@ var blogViewConfig = {
         parent: Rectangle,
         x: 60,
         y: 170,
-        fill: palettes[0].palette.accentl,
+        fill: 'accentl',
         shadow: true,
         width: 500,
         height: 400,
@@ -510,9 +526,9 @@ var blogViewConfig = {
         parent: MockText,
         x: 70,
         y: 180,
-        fill: palettes[0].palette.textd,
+        fill: 'textd',
         shadow: true,
-        shadowFill: palettes[0].palette.accentn,
+        shadowFill: 'accentn',
         lineCount: 6,
         width: 450,
         height: 10,
@@ -525,9 +541,9 @@ var blogViewConfig = {
         parent: MockText,
         x: 70,
         y: 370,
-        fill: palettes[0].palette.textd,
+        fill: 'textd',
         shadow: true,
-        shadowFill: palettes[0].palette.accentn,
+        shadowFill: 'accentn',
         lineCount: 6,
         width: 450,
         height: 10,
@@ -540,7 +556,7 @@ var blogViewConfig = {
         parent: Rectangle,
         x: 600,
         y: 170,
-        fill: palettes[0].palette.accentl,
+        fill: 'accentl',
         shadow: true,
         width: 160,
         height: 400,
@@ -550,7 +566,7 @@ var blogViewConfig = {
         parent: Rectangle,
         x: 620,
         y: 180,
-        fill: palettes[0].palette.accentd,
+        fill: 'accentd',
         shadow: true,
         width: 120,
         height: 100,
@@ -560,7 +576,7 @@ var blogViewConfig = {
         parent: MockText,
         x: 620,
         y: 300,
-        fill: palettes[0].palette.textd,
+        fill: 'textd',
         lineCount: 17,
         width: 120,
         height: 5,
@@ -582,7 +598,7 @@ var galleryViewConfig = {
         x: 10,
         y: 10,
         shadow: true,
-        fill: "lightgrey",
+        fill: 'screen',
         width: 800,
         height: 600,
         animationDelay: 0
@@ -592,7 +608,7 @@ var galleryViewConfig = {
         x: 60,
         y: 30,
         shadow: true,
-        fill: palettes[0].palette.primaryn,
+        fill: 'primaryn',
         width: 700,
         height: 120,
         animationDelay: 0.1
@@ -602,7 +618,7 @@ var galleryViewConfig = {
         x: 100,
         y: 120,
         text: "Picture",
-        fill: palettes[0].palette.accentn,
+        fill: 'accentn',
         animationDelay: 0.1,
         fontSize: 100,
         fontFamily: 'Verdana'
@@ -612,7 +628,7 @@ var galleryViewConfig = {
         x: 240,
         y: 140,
         text: "gallery",
-        fill: palettes[0].palette.accentd,
+        fill: 'accentd',
         animationDelay: 0.1,
         fontSize: 50,
         fontFamily: 'Verdana'
@@ -621,7 +637,7 @@ var galleryViewConfig = {
         parent: MockText,
         x: 520,
         y: 120,
-        fill: palettes[0].palette.primaryl,
+        fill: 'primaryl',
         shadow: false,
         lineDirection: 'horizontal',
         lineCount: 4,
@@ -636,7 +652,7 @@ var galleryViewConfig = {
         parent: Rectangle,
         x: 60,
         y: 170,
-        fill: palettes[0].palette.accentl,
+        fill: 'accentl',
         shadow: true,
         width: 700,
         height: 260,
@@ -646,7 +662,7 @@ var galleryViewConfig = {
         parent: Rectangle,
         x: 60,
         y: 450,
-        fill: palettes[0].palette.accentl,
+        fill: 'accentl',
         shadow: true,
         width: 700,
         height: 120,
@@ -656,7 +672,7 @@ var galleryViewConfig = {
         parent: Rectangle,
         x: 160,
         y: 180,
-        fill: palettes[0].palette.primaryn,
+        fill: 'primaryn',
         shadow: true,
         width: 500,
         height: 220,
@@ -666,7 +682,7 @@ var galleryViewConfig = {
         parent: Rectangle,
         x: 100,
         y: 460,
-        fill: palettes[0].palette.primaryn,
+        fill: 'primaryn',
         shadow: true,
         width: 140,
         height: 100,
@@ -676,7 +692,7 @@ var galleryViewConfig = {
         parent: Rectangle,
         x: 260,
         y: 460,
-        fill: palettes[0].palette.accentd,
+        fill: 'accentd',
         shadow: true,
         width: 140,
         height: 100,
@@ -686,7 +702,7 @@ var galleryViewConfig = {
         parent: Rectangle,
         x: 420,
         y: 460,
-        fill: palettes[0].palette.accentd,
+        fill: 'accentd',
         shadow: true,
         width: 140,
         height: 100,
@@ -696,7 +712,7 @@ var galleryViewConfig = {
         parent: Rectangle,
         x: 580,
         y: 460,
-        fill: palettes[0].palette.accentd,
+        fill: 'accentd',
         shadow: true,
         width: 140,
         height: 100,
@@ -725,122 +741,53 @@ let viewManager = {
                 this.objects[obj].animOn();
             }
         }
+        this.recolor();
     },
-    _recolor: function(objectSet) {
+    recolor: function() {
         // recolors based on the objectSet passed; options are:
         // - blog
         // - gallery
         // - ecommerce
         // - webapp
-        this.colors = {
-            blog: {
-                screen: { fill: "lightgrey" },
-                banner: { fill: this.currentPalette.palette.primaryn },
-                bannerNav: { fill: this.currentPalette.palette.primaryl },
-                bannerText: { fill: this.currentPalette.palette.accentn },
-                textArea: {fill: this.currentPalette.palette.primaryl },
-                lines1: {
-                    fill: this.currentPalette.palette.textd,
-                    shadowFill: this.currentPalette.palette.accentn,
-                },
-                lines2: {
-                    fill: this.currentPalette.palette.textd,
-                    shadowFill: this.currentPalette.palette.accentn,
-                },
-                aside: { fill: this.currentPalette.palette.primaryl },
-                asidePicture: { fill: this.currentPalette.palette.primaryd },
-                asideText: { fill: this.currentPalette.palette.textd }
-            },
-            gallery: {
-                screen: { fill: "lightgrey" },
-                banner: { fill: this.currentPalette.palette.primaryn },
-                bannerText: { fill: this.currentPalette.palette.accentn },
-                bannerTextSmall: { fill: this.currentPalette.palette.accentd },
-                bannerNav: { fill: this.currentPalette.palette.primaryl },
-                pictureArea: { fill: this.currentPalette.palette.accentl },
-                asidePicture: { fill: this.currentPalette.palette.primaryn },
-                aside: { fill: this.currentPalette.palette.accentl },
-                asidePicture1: { fill: this.currentPalette.palette.primaryn },
-                asidePicture2: { fill: this.currentPalette.palette.accentd },
-                asidePicture3: { fill: this.currentPalette.palette.accentd },
-                asidePicture4: { fill: this.currentPalette.palette.accentd },
-            }
-        }
+        let objectSet = this.currentConfig.objectSet
         for (let obj in this.objects) {
             if (obj !== 'objectSet'){
-                this.objects[obj].recolor(
-                    this.colors[objectSet][obj].fill,
-                    this.colors[objectSet][obj].shadowFill
-                );
-            }
-        }
-    },
-    recolor: function() {
-        this._recolor(this.currentConfig.objectSet)
-    },
-    reshape: function(toConfig) {
-        // objectsets:
-        // blog:                Gallery
-            // screen:              screen
-            // banner:              banner
-            // bannerNav:           BannerNav
-            // bannerText:          BannerText
-            //                      BannerTextsmall
-            // textArea:            pictureArea
-            // lines1:              bigPicture1
-            // lines2: 
-            // aside:               ASIDE
-            // asidePicture:        aside1
-            // asideText:           aside2
-            //                      aside3
-            //                      aside4
-        for (let obj in this.currentConfig) {
-            if (!(obj in toConfig)) {
-                this.objects[obj].destroy();
-                delete this.objects[obj]
-            } else if (obj in toConfig && obj !== 'objectSet') {
-                let self = this;
-                    if (self.objects[obj]._.self[0].type === 'rect') {
-                        self.objects[obj].resize(
-                            toConfig[obj].width,
-                            toConfig[obj].height
-                        );
-                        self.objects[obj].moveAbsolute(
-                            toConfig[obj].x,
-                            toConfig[obj].y
-                        );
-                    } else if (self.objects[obj]._.self[0].type === 'text') {
-                        self.objects[obj].resize(
-                            toConfig[obj].width,
-                            toConfig[obj].height
-                        );
-                        self.objects[obj].moveAbsolute(
-                            toConfig[obj].x,
-                            toConfig[obj].y
-                        );
-                        self.objects[obj].changeText(toConfig[obj].text);
-                    } else if (self.objects[obj]._.self[0].type === 'circle') {
-                        self.objects[obj].resize(
-                            toConfig[obj].r
-                        );
-                        self.objects[obj].moveAbsolute(
-                            toConfig[obj].cx,
-                            toConfig[obj].cy
-                        );
-                    }
-            }
-            for (let obj in toConfig) {
-                if (!(obj in this.objects)) {
-                    if (obj !== 'objectSet') {
-                        this.objects[obj] = Object.create(toConfig[obj].parent);
-                        this.objects[obj].init(this.paper, toConfig[obj]);
-                        this.objects[obj].build();
-                        this.objects[obj].animOn();
-                    }
+                let fill = this.currentConfig[obj].fill;
+                let shadowFill = this.currentConfig[obj].shadowFill;
+                console.log(obj)
+                console.log(this.objects[obj])
+                console.log(this.currentConfig[obj])
+                if (fill !== undefined && shadowFill !== undefined) {
+                    this.objects[obj].recolor(
+                        this.currentPalette.get(fill),
+                        this.currentPalette.get(shadowFill)
+                    )
+                } else if (fill !== undefined && shadowFill === undefined) {
+                    this.objects[obj].recolor(
+                        this.currentPalette.get(fill)
+                    )
+                } else if (fill === undefined && shadowFill !== undefined) {
+                    this.objects[obj].recolor(
+                        null,
+                        this.currentPalette.get(shadowFill)
+                    )
                 }
             }
-            this.currentConfig = toConfig
         }
+    },
+    reshape: function(config) {
+        for (let obj in this.objects) {
+            this.objects[obj].destroy()
+        }
+        for (let obj in config) {
+            if (!(obj == 'objectSet')) {
+                this.objects[obj] = Object.create(config[obj].parent)
+                this.objects[obj].init(this.paper, config[obj])
+                this.objects[obj].build()
+                this.objects[obj].animOn()
+            }
+        }
+        this.currentConfig = config;
     }
 }
 
@@ -858,31 +805,32 @@ $( document ).ready( function() {
         width: 1000,
         height: 800
     });
-    // window.vm.init(galleryViewConfig);
-    // window.vm.build($paper);
+    viewManager.init(galleryViewConfig);
+    viewManager.build($paper);
     let i;
-    // viewManager.reshape(blogViewConfig);
+    // setInterval(() => {viewManager.reshape(blogViewConfig)}, 3000);
     
-    // setInterval(function(){
-    //     i = palettes.indexOf(window.vm.currentPalette);
-    //     if ((i+1) == palettes.length) {
-    //         window.vm.currentPalette = palettes[0];
-    //     } else {
-    //         window.vm.currentPalette = palettes[i + 1];
-    //     }
-    //     window.vm.recolor();
-    // }, 5000)
+    setInterval(() => {
+        i = palettes.indexOf(viewManager.currentPalette);
+        if ((i+1) == palettes.length) {
+            viewManager.currentPalette = palettes[0];
+        } else {
+            viewManager.currentPalette = palettes[i + 1];
+        }
+        viewManager.recolor();
+    }, 2500)
     
     let j
-    // setInterval(function(){
-    //     j = confs.indexOf(window.vm.currentConfig);
-    //     if ((j+1) == confs.length) {
-    //         window.vm.currentConfig = confs[0];
-    //     } else {
-    //         window.vm.currentConfig = confs[j + 1];
-    //     }
-    //     window.vm.reshape(window.vm.currentConfig);
-    // }, 5000)
+    let confs = [blogViewConfig, galleryViewConfig]
+    setInterval(() => {
+        j = confs.indexOf(viewManager.currentConfig);
+        if ((j+1) == confs.length) {
+            viewManager.currentConfig = confs[0];
+        } else {
+            viewManager.currentConfig = confs[j + 1];
+        }
+        viewManager.reshape(viewManager.currentConfig);
+    }, 5000)
     
     // $(window).resize(function(){
     //     this.paperWidth = window.innerWidth * 0.9;
