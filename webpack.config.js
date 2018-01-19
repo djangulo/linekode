@@ -7,7 +7,7 @@ const extractSass = new ExtractTextPlugin({
 })
 
 module.exports = {
-    watch: false,
+    watch: true,
     entry: {
         home: './assets/js/home.js',
         services: './assets/js/services.js',
