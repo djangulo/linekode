@@ -1,8 +1,8 @@
 import './../sass/services.sass'
 
-import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js';
+import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg-min.js';
 
-import $ from 'jquery';
+// import $ from 'jquery';
 
 let ColorPalette = {
     init: function(name) {
@@ -1067,10 +1067,7 @@ let viewManager = {
         // this.recolor();
     }
 }
-
-
-$( document ).ready( function() {
-    const $body = $( document.body );
+document.addEventListener("DOMContentLoaded", function() {
     // console.log('Initializing "paper" with w: ' + paperWidth + ', h: ' + paperHeight)
     // const $paper = Snap('#services-svg').attr({
     //     width: 1000,
@@ -1091,7 +1088,6 @@ $( document ).ready( function() {
     // //     }
     // //     viewManager.recolor();
     // // }, 2500)
-    
     let j = 0;
     let confs = [
         blogViewConfig.desktop($paper),
