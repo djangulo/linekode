@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<form id="contact-form" action="#" method="POST">
+    <label for="first_name">{% trans "First name(s)" %}
+        <input name="first_name" type="text" placeholder="John" autocomplete="given-name" />
+    </label>
+    <label for="last_name">{% trans "Last name(s)" %}
+        <input name="last_name" type="text" placeholder="Doe" autocomplete="family-name" />
+    </label>
+    <label for="email">{% trans "Email" %}
+        <input name="email" type="email" placeholder="john.doe@example.com" autocomplete="email" />
+    </label>
+    <label for="phone">{% trans "Phone" %}
+        <input 
+        name="phone" 
+        type="tel" 
+        placeholder="+1(809)123-4567" 
+        autocomplete="tel-national" />
+    </label>
+    <label for="message">{% trans "Message" %}
+        <textarea name="message" type="text" placeholder="{% trans 'Your description here' %}" autocomplete="off"></textarea>
+    </label>
+
+    <div class="g-recaptcha" data-sitekey="{{ g_recaptcha_public_key }}"></div>
+    <button type="submit">{% trans "Submit" %}</button>
+    <button type="reset">{% trans "Clear" %}</button>
+</form>
