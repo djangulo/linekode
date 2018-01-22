@@ -1,0 +1,67 @@
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+<!-- Current language: {{ LANGUAGE_CODE }} -->
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script> -->
+        <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+
+
+        {% block js %}{% endblock %}
+        {% block css %}{% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src='https://www.google.com/recaptcha/api.js?hl={{ LANGUAGE_CODE }}'></script>
+    </head>
+    <body>
+        <header>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'img/linekodelogoplain.svg' %}" alt="linekode logo"/>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">{% trans "Value" %}</a></li>
+                    <li><a href="#">{% trans "Why?" %}</a></li>
+                    <li><a href="#services">{% trans "Services" %}</a></li>
+                    <li><a href="#">{% trans "Work" %}</a></li>
+                </ul>
+            </nav>
+            <div id="language-box">
+                <form action="{% url 'set_language' %} " method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}" />
+                        {% for language in languages %}
+                            {% if language.code != LANGUAGE_CODE %}
+                                <li><a href="/{{ language.code }}{{request.get_full_path|slice:'3:' }}">{{ language.code|upper }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                </form>
+            </div>
+        </header>
+
+        {% block body_content %}{% endblock %}
+
+
+        <footer>
+            <!--    <a href="http://twitter.com">-->
+            <!--        <img src="img/twitter-wrap.png" alt="Twitter Logo" class="social-icon">-->
+            <!--    </a>-->
+            <!--    <a href="https://github.com/djangulo">-->
+            <!--        <img src="img/GitHub-Mark.png" alt="Github Logo" class="social-icon">-->
+            <!--    </a>-->
+            <p>&copy; 2018 Linekode Development</p>
+        </footer>
+    </body>
+    
+</html>
