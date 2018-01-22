@@ -1,4 +1,4 @@
-$font-stack: 'Open Sans', sans-serif
+$font-stack: 'Hind', sans-serif
 
 .hello
   color: red
@@ -8,6 +8,8 @@ body
   margin: 0
   padding: 0
   background-color: #e5e0e0
+  ul
+    list-style: none
 
 a 
   text-decoration: none
@@ -55,45 +57,73 @@ nav
 
 
 .block 
-  height: 80vh
   margin: 0 auto
-  width: 100%
+  // width: 100%
   background-color: #aaaaaa
   border-bottom: 1px solid #501644
+  // height: 40vw
 
 
-.value 
+.message 
   display: flex   
-  align-items: center
-
+  flex-direction: column
+  justify-content: center
+  min-height: 480px
 
 .jumbo 
   font-size: 2em
-  font-family: 'Berkshire Swash', cursive, "Open Sans", sans-serif
+  font-family: $font-stack
   text-align: center
 
 
-.challenges 
+.value 
   background-color: #d84949
   display: grid
-  grid-template-columns: repeat(12, 1fr)
-  grid-gap: 10px
-  grid-template-rows: 1fr 1fr
+  margin: 0
+  padding: 0
+  grid-template-rows: 1fr 3fr 1fr
+  grid-template-columns: 1fr
+  grid-gap: 5px
 
-  h2 
+  h2
     grid-row: 1
-    grid-column: span 12
-    text-align: center
-    
-  h2 
-    grid-row: 1
-    grid-column: span 12
+    grid-column-start: 1
+    grid-column-end: 6
     text-align: center
 
-  ul 
+  .columns
+    display: flex
     grid-row: 2
-    grid-column: span 6
-    margin-left: 15px
+    grid-column-start: 1
+    grid-column-end: 6
+
+    ul
+      flex: 1 1 auto
+      li
+        font-size: 1.4em
+    img
+      flex: 1 1 auto
+
+  h3
+    grid-row: 3
+    text-align: center
+  
+
+
+  // h2 
+  //   grid-row: 1
+  //   grid-column: span 12
+  //   text-align: center
+    
+  // h2 
+  //   grid-row: 1
+  //   grid-column: span 12
+  //   text-align: center
+
+  // ul 
+  //   grid-row: 2
+  //   grid-column: span 6
+  //   margin-left: 15px
 
 .mustard 
   background-color: #fdda59
@@ -119,3 +149,9 @@ footer
 .big 
   grid-column: span 2
   grid-row: span 2
+
+.services
+  display: block
+  text-align: center
+  height: auto
+
