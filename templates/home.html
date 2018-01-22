@@ -1,129 +1,57 @@
+{% extends "layout.html" %}
 {% load i18n %}
 {% load static %}
-{% get_current_language as LANGUAGE_CODE %}
-<!-- Current language: {{ LANGUAGE_CODE }} -->
-{% get_available_languages as LANGUAGES %}
-{% get_language_info_list for LANGUAGES as languages %}
 
-{% trans "Your message here" as your_message_here %}
+{% block title %}Linekode | Home{% endblock %}
 
-<!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Linekode | Home</title>
-        <!-- <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script> -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i,800" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
-        <link rel="stylesheet" href="{% static '/css/home.css' %}">
-        <link rel="stylesheet" href="{% static '/css/services.css' %}">
-        <script type="text/javascript" src="{% static 'js/home.bundle.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/services.bundle.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/scroll.bundle.js' %}"></script>
-        <!--<link rel="stylesheet" href="{%  static 'css/responsive.css' %}">-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src='https://www.google.com/recaptcha/api.js?hl={{ LANGUAGE_CODE }}'></script>
-    </head>
-    <body>
-        <header>
-            <a href="{% url 'home' %}">
-                <img src="{% static "img/linekodelogoplain.svg" %}" alt="linekode logo"/>
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#">{% trans "Value" %}</a></li>
-                    <li><a href="#">{% trans "Why?" %}</a></li>
-                    <li><a href="#services">{% trans "Services" %}</a></li>
-                    <li><a href="#">{% trans "Work" %}</a></li>
-                </ul>
-            </nav>
-            <div id="language-box">
-                <form action="{% url 'set_language' %} " method="post">
-                    {% csrf_token %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}" />
-                        {% for language in languages %}
-                            {% if language.code != LANGUAGE_CODE %}
-                                <li><a href="/{{ language.code }}{{request.get_full_path|slice:'3:' }}">{{ language.code }}</a></li>
-                            {% endif %}
-                                <!-- <input name="language-{{ language.code }}" type="hidden" value="{{ language.code }}" /> -->
-                                <!-- <input type="submit" value="{{ language.code }}" /> -->
-                        {% endfor %}
-                </form>
-            </div>
+{% block js %}
+<script type="text/javascript" src="{% static 'js/home.bundle.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/services.bundle.js' %}"></script>
+{% endblock %}
 
-        </header>
-        <div class="wrapper">
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/home.css' %}">
+<link rel="stylesheet" href="{% static '/css/services.css' %}">
+<link rel="stylesheet" href="{% static '/css/contact-form.css' %}">
+{% endblock %}
 
-            <section id="value" class="block value">
-                <h1 class="jumbo">
-                    {% trans "There are no limits when you love your project. Expanding your project is easier than ever." %}
-                </h1>
-            </section>
+{% block body_content %}
+<div class="wrapper">
+    <section id="message" class="block message">
+        <h1 class="jumbo">
+            {% trans "There are no limits when you love your project. Expanding your project is easier than ever." %}
+        </h1>
+    </section>
 
-            <section id="why" class="block challenges">
-                <h2>{% trans "Why us?" %}</h2>
-
-                <ul>
-                    <li>A</li>
-                    <li>B</li>
-                    <li>C</li>
-                    <li>D</li>
-                </ul>
-                <ul>
-                    <li>E</li>
-                    <li>F</li>
-                    <li>G</li>
-                    <li>H</li>
-                </ul>
-            </section>
-            <section id="services" class="block services">
-                <svg id="services-svg"></svg>
-            </section>
-            <!-- <div class="block burgundy">
-                chat with us
-            </div> -->
-            <div id="contact" class="block orange">
-                <form id="contact-form" action="#" method="POST">
-                    <label for="first_name">{% trans "First name(s)" %}
-                        <input name="first_name" type="text" placeholder="John" autocomplete="given-name" />
-                    </label>
-                    <label for="last_name">{% trans "Last name(s)" %}
-                        <input name="last_name" type="text" placeholder="Doe" autocomplete="family-name" />
-                    </label>
-                    <label for="email">{% trans "Email" %}
-                        <input name="email" type="email" placeholder="john.doe@example.com" autocomplete="email" />
-                    </label>
-                    <label for="phone">{% trans "Phone" %}
-                        <input 
-                        name="phone" 
-                        type="tel" 
-                        placeholder="+1(809)123-4567" 
-                        autocomplete="tel-national" />
-                    </label>
-                    <label for="message">{% trans "Message" %}
-                        <textarea name="message" type="text" placeholder="{{ your_message_here }}" autocomplete="off"></textarea>
-                    </label>
-
-                    <div class="g-recaptcha" data-sitekey="{{g_recaptcha_public_key }}"></div>
-                    <button type="submit">{% trans "Submit" %}</button>
-                    <button type="reset">{% trans "Clear" %}</button>
-                </form>
-            </div>
-
-
-            <footer>
-            <!--    <a href="http://twitter.com">-->
-            <!--        <img src="img/twitter-wrap.png" alt="Twitter Logo" class="social-icon">-->
-            <!--    </a>-->
-            <!--    <a href="https://github.com/djangulo">-->
-            <!--        <img src="img/GitHub-Mark.png" alt="Github Logo" class="social-icon">-->
-            <!--    </a>-->
-                <p>&copy; 2018 Linekode Development</p>
-            </footer>
+    <section id="value" class="block value">
+        <h2>{% trans "How can a website help you grow your business?" %}</h2>
+        <div class="columns">
+            <ul>
+                <li>24/7  Online presence </li>
+                <li>Target a wider market</li>
+                <li>Reduced marketing costs</li>
+                <li>Consumer insight</li>
+                <li>Online customer service</li>
+                <li>Builds business profile and credibility</li>
+                <li>Increase sales</li>
+            </ul>
+            <img src="{% static 'img/consumer-exp.svg' %}">
         </div>
-    </body>
-    
-</html>
+
+        <h3>{% trans "We can make yours and your customers online experience more memorable" %}</h3>
+    </section>
+    <section class="divider">
+        <h2>We expect the challenge</h2>
+    </section>
+    <section id="services" class="block services">
+        <svg id="services-svg"></svg>
+    </section>
+    <!-- <div class="block burgundy">
+        chat with us
+    </div> -->
+    <div id="contact" class="block orange">
+        <h2>{% trans "Tell us about your project" %}</h2>
+        {% include 'contact/snippets/contact_form_snippet.html' %}
+    </div>
+</div>
+{% endblock %}
