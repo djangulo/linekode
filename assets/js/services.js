@@ -644,12 +644,11 @@ var blogViewConfig = {
         } else {
             width = parseFloat(paper.attr('width'));
         }
-        width = parseFloat(paper.attr('width')) * 0.5;
         const height = parseFloat(paper.attr('height'));
         return {
             screen: {
                 parent: Rectangle,
-                x: width * 0.03,
+                x: width * 0.23,
                 y: height * 0.03,
                 shadow: true,
                 fill: 'screen',
@@ -659,7 +658,7 @@ var blogViewConfig = {
             },
             banner: {
                 parent: Rectangle,
-                x: width * 0.055,
+                x: width * 0.26,
                 y: height * 0.0375,
                 shadow: true,
                 fill: 'primaryn',
@@ -669,7 +668,7 @@ var blogViewConfig = {
             },
             bannerText: {
                 parent: RealText,
-                x: width * 0.11,
+                x: width * 0.36,
                 y: height * 0.13,
                 text: "Blog",
                 fill: 'accentn',
@@ -679,7 +678,7 @@ var blogViewConfig = {
             },
             bannerTextSmall: {
                 parent: RealTextSmall,
-                x: width * 0.38,
+                x: width * 0.63,
                 y: height * 0.18,
                 text: "mobile",
                 fill: 'accentn',
@@ -689,7 +688,7 @@ var blogViewConfig = {
             },
             navBox: {
                 parent: Rectangle,
-                x: width * 0.85,
+                x: width * 1.05,
                 y: height * 0.12,
                 fill: 'accentd',
                 shadow: false,
@@ -701,7 +700,7 @@ var blogViewConfig = {
             },
             bannerNav: {
                 parent: MockText,
-                x: width * 0.86,
+                x: width * 1.06,
                 y: height * 0.13,
                 fill: 'primaryl',
                 shadow: false,
@@ -716,7 +715,7 @@ var blogViewConfig = {
             },
             textArea: {
                 parent: Rectangle,
-                x: width * 0.055,
+                x: width * 0.26,
                 y: height * 0.22,
                 fill: 'accentl',
                 shadow: true,
@@ -726,7 +725,7 @@ var blogViewConfig = {
             },
             lines1: {
                 parent: MockText,
-                x: width * 0.065,
+                x: width * 0.27,
                 y: height * 0.24,
                 fill: 'textd',
                 shadow: true,
@@ -742,7 +741,7 @@ var blogViewConfig = {
             },
             lines2: {
                 parent: MockText,
-                x: width * 0.065,
+                x: width * 0.27,
                 y: height * 0.58,
                 fill: 'textd',
                 shadow: true,
@@ -865,7 +864,7 @@ var galleryViewConfig = {
                 lineCount: 4,
                 lineSpacing: width * 0.22,
                 width: width * 0.2,
-                height: height * 0.15,
+                height: height * 0.13,
                 animationDelay: 0.5
             }
         }
@@ -877,22 +876,21 @@ var galleryViewConfig = {
         } else {
             width = parseFloat(paper.attr('width'));
         }
-        width = parseFloat(paper.attr('width')) * 0.5;
         const height = parseFloat(paper.attr('height'));
         return {
             screen: {
                 parent: Rectangle,
-                x: width * 0.03,
+                x: width * 0.23,
                 y: height * 0.03,
                 shadow: true,
                 fill: 'screen',
                 width: width * 0.94,
-                height: height * 0.94,
+                height: height * 0.9,
                 animationDelay: 0
             },
             banner: {
                 parent: Rectangle,
-                x: width * 0.055,
+                x: width * 0.255,
                 y: height * 0.0375,
                 shadow: true,
                 fill: 'primaryn',
@@ -902,7 +900,7 @@ var galleryViewConfig = {
             },
             bannerText: {
                 parent: RealText,
-                x: width * 0.11,
+                x: width * 0.31,
                 y: height * 0.115,
                 text: "Gallery",
                 fill: 'accentn',
@@ -912,7 +910,7 @@ var galleryViewConfig = {
             },
             bannerTextSmall: {
                 parent: RealTextSmall,
-                x: width * 0.38,
+                x: width * 0.58,
                 y: height * 0.155,
                 text: "mobile",
                 fill: 'accentn',
@@ -922,7 +920,7 @@ var galleryViewConfig = {
             },
             navBox: {
                 parent: Rectangle,
-                x: width * 0.85,
+                x: width * 1.05,
                 y: height * 0.09,
                 fill: 'accentd',
                 shadow: false,
@@ -934,7 +932,7 @@ var galleryViewConfig = {
             },
             bannerNav: {
                 parent: MockText,
-                x: width * 0.86,
+                x: width * 1.06,
                 y: height * 0.1,
                 fill: 'primaryl',
                 shadow: false,
@@ -949,7 +947,7 @@ var galleryViewConfig = {
             },
             pictureArea: {
                 parent: Rectangle,
-                x: width * 0.055,
+                x: width * 0.255,
                 y: height * 0.18,
                 fill: 'accentl',
                 shadow: true,
@@ -959,7 +957,7 @@ var galleryViewConfig = {
             },
             aside: {
                 parent: Rectangle,
-                x: width * 0.055,
+                x: width * 0.255,
                 y: height * 0.71,
                 fill: 'accentl',
                 shadow: true,
@@ -969,7 +967,7 @@ var galleryViewConfig = {
             },
             bigPicture: {
                 parent: Rectangle,
-                x: width * 0.065,
+                x: width * 0.265,
                 y: height * 0.20,
                 fill: 'primaryn',
                 shadow: true,
@@ -979,7 +977,7 @@ var galleryViewConfig = {
             },
             asidePictures: {
                 parent: MockText,
-                x: width * 0.07,
+                x: width * 0.27,
                 y: height * 0.728,
                 fill: 'accentd',
                 shadow: true,
@@ -988,7 +986,7 @@ var galleryViewConfig = {
                 lineCount: 4,
                 lineSpacing: width * 0.22,
                 width: width * 0.2,
-                height: height * 0.15,
+                height: height * 0.13,
                 animationDelay: 0.5
             }
         }
@@ -997,23 +995,52 @@ var galleryViewConfig = {
 
 let viewManager = {
     currentPalette: palettes[0],
-    init: function(config) {
+    init: function(config, paperId=null) {
         this.objects = {};
-        this.currentConfig = config;
-        for (let obj in config) {
-            if (obj !== 'objectSet') {
-                this.objects[obj] = Object.create(config[obj].parent)
-            }
+        this.paperId = paperId;
+        let wWidth = window.innerWidth;
+        let wHeight = window.innerHeight;
+        let w, h;
+        switch (true) {
+            case wWidth < 768:
+                w = wWidth * 0.9;
+                break;
+            case wWidth >= 768:
+                w = 768;
+                break;
+            default:
+                w = wWidth * 0.8
+        }
+        switch (true) {
+            case wHeight >= 768:
+                h = 768;
+                break;
+            default:
+                h = wHeight * 0.7;
+        }
+        if (this.paper !== undefined) { this.paper.selectAll('g').remove() } // remove paper, if any
+        if (paperId !== null) {
+            this.paper = Snap('#' + paperId).attr({
+                width: w,
+                height: h
+            })
+        } else {
+            this.paper = Snap().attr({
+                width: w,
+                height: h
+            })
+        }
+        try { this.currentConfig = config(this.paper);
+        } catch (e) { this.currentConfig = config};
+        for (let obj in this.currentConfig) {
+            this.objects[obj] = Object.create(this.currentConfig[obj].parent)
         }
     },
-    build: function(paper) {
-        this.paper = paper;
+    build: function() {
         for (let obj in this.currentConfig) {
-            if (obj !== 'objectSet') {
-                this.objects[obj].init(paper, this.currentConfig[obj]);
-                this.objects[obj].build();
-                this.objects[obj].animOn();
-            }
+            this.objects[obj].init(this.paper, this.currentConfig[obj]);
+            this.objects[obj].build();
+            this.objects[obj].animOn();
         }
         this.recolor();
     },
@@ -1055,58 +1082,32 @@ let viewManager = {
             }
         }, 1000)
         setTimeout(() => {
-            for (let obj in config) {
-                this.objects[obj] = Object.create(config[obj].parent)
-                this.objects[obj].init(this.paper, config[obj])
-                this.objects[obj].build()
-                this.objects[obj].animOn()
-            }
-            this.recolor()
+            this.init(config, this.paperId);
+            this.build()
         }, 1000)
-        this.currentConfig = config;
-        // this.recolor();
+    },
+    rotateShape: function(configArray) {
+        let j = 0;
+        setInterval(() => {
+            if ((j+1) == configArray.length) {
+                j = 0;
+            } else {
+                j += 1;
+            }
+            this.currentConfig = configArray[j](this.paper)
+            this.reshape(this.currentConfig);
+        }, 5000)
     }
 }
 document.addEventListener("DOMContentLoaded", function() {
-    // console.log('Initializing "paper" with w: ' + paperWidth + ', h: ' + paperHeight)
-    // const $paper = Snap('#services-svg').attr({
-    //     width: 1000,
-    //     height: 800
-    // });
-    const $paper = Snap(window.innerWidth * 0.9, window.innerHeight * 0.9)
-    viewManager.init(galleryViewConfig.mobile($paper));
-    viewManager.build($paper);
-    // let i;
-    // // setInterval(() => {viewManager.reshape(blogViewConfig)}, 3000);
-    
-    // // setInterval(() => {
-    // //     i = palettes.indexOf(viewManager.currentPalette);
-    // //     if ((i+1) == palettes.length) {
-    // //         viewManager.currentPalette = palettes[0];
-    // //     } else {
-    // //         viewManager.currentPalette = palettes[i + 1];
-    // //     }
-    // //     viewManager.recolor();
-    // // }, 2500)
-    let j = 0;
+    viewManager.init(galleryViewConfig.mobile, 'services-svg');
+    viewManager.build();
     let confs = [
-        blogViewConfig.desktop($paper),
-        blogViewConfig.mobile($paper),
-        galleryViewConfig.desktop($paper),
-        galleryViewConfig.mobile($paper)
+        blogViewConfig.desktop,
+        blogViewConfig.mobile,
+        galleryViewConfig.desktop,
+        galleryViewConfig.mobile
     ]
-    setInterval(() => {
-        if ((j+1) == confs.length) {
-            viewManager.reshape(confs[0]);
-            j = 0;
-        } else {
-            viewManager.reshape(confs[j + 1]);
-            j += 1;
-        }
-    }, 5000)
+    viewManager.rotateShape(confs);
     
-    // $(window).resize(function(){
-    //     this.paperWidth = window.innerWidth * 0.9;
-    //     this.paperHeight = window.innerHeight * 0.9;
-    // });
 })
