@@ -11,8 +11,8 @@ module.exports = {
     entry: {
         home: './assets/js/home.js',
         services: './assets/js/services.js',
-        "post-form": './assets/js/post-form.js',
-        scroll: './assets/js/scroll.js'
+        "contact-form": './assets/js/contact-form.js',
+        scroll: './assets/js/scroll.js',
     },
     output: {
         filename: 'js/[name].bundle.js',
@@ -22,13 +22,16 @@ module.exports = {
         rules: [{
             test: /\.sass$/,
             use: extractSass.extract({
-                use: [{
-                    loader: "css-loader"
-                }, {
-                    loader: "sass-loader"
-                }],
-                fallback: "style-loader"
-            })
+                use: [
+                    {
+                        loader: "css-loader"
+                    }, {
+                        loader: "sass-loader", options: {
+                            sourceMap: true
+                        }
+                    }],
+                    fallback: "style-loader"
+                }),
         }]
     },
     plugins: [
