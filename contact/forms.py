@@ -24,7 +24,7 @@ class ContactForm(forms.ModelForm):
         labels = {
             'first_name': _('First name'),
             'last_name': _('Last name'),
-            'email': 'Email',
+            'email': _('Email'),
             'phone': _('Phone'),
         }
         localized_fields = '__all__'

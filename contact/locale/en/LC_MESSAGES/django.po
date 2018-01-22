@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-10 10:40-0500\n"
+"POT-Creation-Date: 2018-01-22 10:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: .\api.py:15
+msgid "Your message was sent succesfully!"
+msgstr ""
+
+#: .\api.py:16
+msgid "Thank you for coming back! Your message was sent succesfully!"
+msgstr ""
+
+#: .\api.py:17
+msgid "Invalid reCAPTCHA. Please try again."
+msgstr ""
+
 #: .\forms.py:25
 msgid "First name"
 msgstr ""
@@ -26,26 +38,70 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: .\forms.py:28
+#: .\forms.py:27 .\templates\contact\snippets\contact_form_snippet.html:8
+msgid "Email"
+msgstr ""
+
+#: .\forms.py:28 .\templates\contact\snippets\contact_form_snippet.html:11
 msgid "Phone"
 msgstr ""
 
+#: .\models.py:7
+msgid "first name"
+msgstr ""
+
+#: .\models.py:9
+msgid "last name"
+msgstr ""
+
+#: .\models.py:11
+msgid "email"
+msgstr ""
+
 #: .\models.py:13
+msgid "phone"
+msgstr ""
+
+#: .\models.py:17 .\models.py:34
 msgid "contact"
 msgstr ""
 
-#: .\models.py:14
+#: .\models.py:18
 msgid "contacts"
 msgstr ""
 
-#: .\models.py:30
-msgid "messages"
+#: .\models.py:36
+msgid "description"
 msgstr ""
 
-#: .\models.py:36
+#: .\models.py:40
 msgid "contact message"
 msgstr ""
 
-#: .\models.py:37
+#: .\models.py:41
 msgid "contact messages"
+msgstr ""
+
+#: .\templates\contact\snippets\contact_form_snippet.html:2
+msgid "First name(s)"
+msgstr ""
+
+#: .\templates\contact\snippets\contact_form_snippet.html:5
+msgid "Last name(s)"
+msgstr ""
+
+#: .\templates\contact\snippets\contact_form_snippet.html:18
+msgid "Message"
+msgstr ""
+
+#: .\templates\contact\snippets\contact_form_snippet.html:19
+msgid "Your description here"
+msgstr ""
+
+#: .\templates\contact\snippets\contact_form_snippet.html:23
+msgid "Submit"
+msgstr ""
+
+#: .\templates\contact\snippets\contact_form_snippet.html:24
+msgid "Clear"
 msgstr ""

@@ -3,10 +3,14 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Contact(models.Model):
-    first_name = models.CharField(max_length=50, blank=True, null=True)
-    last_name = models.CharField(max_length=50, blank=True, null=True)
-    email = models.CharField(max_length=100, blank=False, null=False, unique=True)
-    phone = models.CharField(max_length=15, blank=True, null=True)
+    first_name = models.CharField(max_length=50, blank=True, null=True,
+        verbose_name=_('first name'))
+    last_name = models.CharField(max_length=50, blank=True, null=True,
+        verbose_name=_('last name'))
+    email = models.CharField(max_length=100, blank=False, null=False, unique=True,
+        verbose_name=_('email'))
+    phone = models.CharField(max_length=15, blank=True, null=True,
+        verbose_name=_('phone'))
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     class Meta:
@@ -27,9 +31,9 @@ class ContactMessage(models.Model):
         blank=False,
         null=True,
         related_name='messages',
-        verbose_name=_('messages'),
+        verbose_name=_('contact'),
     )
-    message = models.TextField()
+    description = models.TextField(verbose_name=_('description'))
     sent_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

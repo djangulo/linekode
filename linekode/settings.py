@@ -132,7 +132,7 @@ USE_TZ = True
 LANGUAGES = [
     ('es', _("Spanish")),
     ('en', _("English")),
-    ('fr', _("French")),
+    # ('fr', _("French")),
 ]
 
 LOCALE_PATHS = [
