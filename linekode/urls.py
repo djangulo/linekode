@@ -21,7 +21,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 
 from contact.api import PostContactMessageAPIView
-from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,7 +31,7 @@ urlpatterns = [
 urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns += i18n_patterns(
-    path('', views.home, name='home'),
+    path('', include('home.urls')),
 )
 
 # urlpatterns += staticfiles_urlpatterns()

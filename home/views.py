@@ -6,4 +6,4 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
 def home(request):
-    return render(request, 'home.html', context={'g_recaptcha_public_key': settings.GOOGLE_RECAPTCHA_PUBLIC_KEY})
+    return render(request, 'home/home.html', context={'g_recaptcha_public_key': settings.GOOGLE_RECAPTCHA_PUBLIC_KEY})
