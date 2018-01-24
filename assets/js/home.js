@@ -1,1 +1,1 @@
-import './../sass/home.sass'
+import './../sass/home.sass';

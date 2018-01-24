@@ -75,46 +75,48 @@ nav
   font-family: $font-stack
   text-align: center
 
-
 .value 
   background-color: #d84949
-  display: grid
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
   margin: 0
   padding: 0
-  grid-template-rows: 1fr 3fr 1fr
-  grid-template-columns: 1fr
-  grid-gap: 5px
 
   h2
-    grid-row: 1
-    grid-column-start: 1
-    grid-column-end: 6
     text-align: center
 
-  .columns
+  .row
     display: flex
-    grid-row: 2
-    grid-column-start: 1
-    grid-column-end: 6
-
-    ul
-      flex: 1 1 auto
-      li
-        font-size: 1.4em
-    img
-      flex: 1 1 auto
-
-  h3
-    grid-row: 3
-    text-align: center
-  
+    flex-direction: row
+    .bullet-image
+      display: inline-block
+      width: 10px
+      height: 10px
+      background-position: 50% 50%
+      background-repeat: no-repeat
+      background-size: cover
 
 
+#twenty-four
+  background-image: url('./../img/24hrs-service.svg')
+#expansion-market
+  background-image: url('./../img/expansion-market.svg')
+#lower-cost
+  background-image: url('./../img/dollar-symbol-lower-cost.svg')
+#insight
+  background-image: url('./../img/consumer-exp.svg')
+#customer-service
+  background-image: url('./../img/customer-service.svg')
+#credibility
+  background-image: url('./../img/CREDIBILITY.svg')
+#sales
+  background-image: url('./../img/online-shop-sale.svg')
   // h2 
   //   grid-row: 1
   //   grid-column: span 12
   //   text-align: center
-    
   // h2 
   //   grid-row: 1
   //   grid-column: span 12
