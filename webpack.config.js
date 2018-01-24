@@ -1,5 +1,5 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
     filename: "css/[name].css",
@@ -8,6 +8,9 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
     watch: true,
+    watchOptions: {
+        poll: 1000
+    },
     entry: {
         home: './assets/js/home.js',
         services: './assets/js/services.js',
@@ -16,7 +19,8 @@ module.exports = {
     },
     output: {
         filename: 'js/[name].bundle.js',
-        path: path.resolve(__dirname, 'assets/bundle')
+        path: path.resolve(__dirname, 'assets/bundle'),
+        publicPath: '/static/'
     },
     module: {
         rules: [{
@@ -26,15 +30,23 @@ module.exports = {
                     {
                         loader: "css-loader"
                     }, {
-                        loader: "sass-loader", options: {
-                            sourceMap: true
-                        }
+                        loader: "sass-loader"
                     }],
                     fallback: "style-loader"
                 }),
-        }]
+        },
+        {
+            test: /\.(png|svg|jpg|gif)$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: 'img/[name].[hash].[ext]',
+                }
+            }]
+        }
+    ]
     },
     plugins: [
-        extractSass
+        extractSass,
     ]
 };
