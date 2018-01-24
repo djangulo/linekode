@@ -12,6 +12,7 @@ module.exports = {
         poll: 1000
     },
     entry: {
+        layout: './assets/js/layout.js',
         home: './assets/js/home.js',
         services: './assets/js/services.js',
         "contact-form": './assets/js/contact-form.js',

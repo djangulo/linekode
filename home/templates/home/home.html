@@ -2,12 +2,13 @@
 {% load i18n %}
 {% load static %}
 
+
 {% block title %}Linekode | Home{% endblock %}
 
 {% block js %}
 <script type="text/javascript" src="{% static 'js/home.bundle.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/services.bundle.js' %}"></script>
-{% endblock %}
+{% endblock js %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static '/css/home.css' %}">
@@ -25,33 +26,35 @@
 
     <section id="value" class="block value">
         <h2>{% trans "How can a website help you grow your business?" %}</h2>
-        <div class="row">
-            <div id="twenty-four" class="bullet-image"></div>
-            <p>24/7  Online presence </p>
-        </div>
-        <div class="row">
-            <div id="expansion-market" class="bullet-image"></div>
-            <p>Target a wider market</p>
-        </div>
-        <div class="row">
-            <div id="lower-cost" class="bullet-image"></div>
-            <p>Reduced marketing costs</p>
-        </div>
-        <div class="row">
-            <div id="insight" class="bullet-image"></div>
-            <p>Consumer insight</p>
-        </div>
-        <div class="row">
-            <div id="customer-service" class="bullet-image"></div>
-            <p>Online customer service</p>
-        </div>
-        <div class="row">
-            <div id="credibility" class="bullet-image"></div>
-            <p>Builds business profile and credibility</p>
-        </div>
-        <div class="row">
-            <div id="sales" class="bullet-image"></div>
-            <p>Increase sales</p>
+        <div class="container">
+            <div class="cell">
+                <div id="twenty-four" class="bullet-image"></div>
+                <p>24/7  Online presence </p>
+            </div>
+            <div class="cell">
+                <div id="expansion-market" class="bullet-image"></div>
+                <p>Target a wider market</p>
+            </div>
+            <div class="cell">
+                <div id="lower-cost" class="bullet-image"></div>
+                <p>Reduced marketing costs</p>
+            </div>
+            <div class="cell">
+                <div id="insight" class="bullet-image"></div>
+                <p>Consumer insight</p>
+            </div>
+            <div class="cell">
+                <div id="customer-service" class="bullet-image"></div>
+                <p>Online customer service</p>
+            </div>
+            <div class="cell">
+                <div id="credibility" class="bullet-image"></div>
+                <p>Builds business profile and credibility</p>
+            </div>
+            <div class="cell">
+                <div id="sales" class="bullet-image"></div>
+                <p>Increase sales</p>
+            </div>
         </div>
 
         <h3>{% trans "We can make yours and your customers online experience more memorable" %}</h3>

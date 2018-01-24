@@ -1100,14 +1100,15 @@ let viewManager = {
     }
 }
 document.addEventListener("DOMContentLoaded", function() {
-    viewManager.init(galleryViewConfig.mobile, 'services-svg');
-    viewManager.build();
-    let confs = [
-        blogViewConfig.desktop,
-        blogViewConfig.mobile,
-        galleryViewConfig.desktop,
-        galleryViewConfig.mobile
-    ]
-    viewManager.rotateShape(confs);
-    
+    if (window.matchMedia("(min-width: 480px").matches) {
+        viewManager.init(galleryViewConfig.mobile, 'services-svg');
+        viewManager.build();
+        let confs = [
+            blogViewConfig.desktop,
+            blogViewConfig.mobile,
+            galleryViewConfig.desktop,
+            galleryViewConfig.mobile
+        ]
+        viewManager.rotateShape(confs);
+    }
 })
