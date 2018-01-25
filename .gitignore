@@ -4,7 +4,7 @@ __pycache__
 *.pyc
 
 media
-static
+compiled_static
 bundle
 *_unsafe*
 

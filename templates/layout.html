@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="{% static '/css/layout.css' %}">
         {% block css %}{% endblock %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src='https://www.google.com/recaptcha/api.js?hl={{ LANGUAGE_CODE }}'></script>
     </head>
     <body>
         <header>
@@ -36,16 +35,17 @@
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}" />
                         {% for language in languages %}
-                            {% if language.code != LANGUAGE_CODE %}
-                                <li><a href="/{{ language.code }}{{request.get_full_path|slice:'3:' }}">{{ language.code|upper }}</a></li>
-                            {% endif %}
+                            <a 
+                            class="{% if language.code == LANGUAGE_CODE %}selected{% endif %}" 
+                            href="/{{ language.code }}{{request.get_full_path|slice:'3:' }}">
+                                {{ language.code|upper }}
+                            </a>
                         {% endfor %}
                 </form>
             </div>
         </header>
 
         {% block body_content %}{% endblock %}
-
 
         <footer>
             <!--    <a href="http://twitter.com">-->
@@ -58,4 +58,5 @@
         </footer>
     </body>
     
+    {% block bottom_page_js %}{% endblock %}
 </html>

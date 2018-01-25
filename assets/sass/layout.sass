@@ -2,145 +2,47 @@ $font-stack: 'Hind', sans-serif
 
 body
   font-family: $font-stack
-  font-size: 12px
+  font-size: 16px
   margin: 0
   padding: 0
-  background-color: #e5e0e0
+  background-color: #E4E4E4
 
 ul
-list-style: none
+  list-style: none
 
 a 
   text-decoration: none
   color: #000
 
 header 
-  margin-bottom: -20px
+  margin: 0
+  padding: 0
+  width: 100%
   img 
     display: block
-    margin: 0.2em auto -15px
+    margin: 0.2em auto -0.2em
+    padding-top: 0.3em
     width: 65%
     max-width: 380px
 
-
 nav 
   text-align: center
-  padding: 10px 0 10px
+  padding: 0
   margin: 0
-  border-bottom: 1px solid #501644
-
 
   ul 
-    margin: 0 10px
+    // margin: 0 10px
     padding: 0
-
 
   li 
     display: inline-block
+    margin: 0 0.4em
 
   a 
-  font-size: 0.8em
-  font-weight: 200
+  font-size: 1em
+  font-weight: 500
   padding: 0.4em 0
   margin: 0 0.4em
-
-.wrapper 
-  width: 100%
-  max-width: 1600px
-  margin-left: auto
-  margin-right: auto
-
-
-.block 
-  margin: 0 auto
-  // width: 100vw
-  background-color: #aaaaaa
-  border-bottom: 1px solid #501644
-  // height: 40vw
-
-
-.message 
-  display: flex   
-  flex-direction: column
-  justify-content: center
-  min-height: 480px
-
-.jumbo 
-  font-size: 2em
-  font-family: $font-stack
-  text-align: center
-
-.value 
-  background-color: #d84949
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  margin: 0
-  padding: 0
-
-  h2,
-  h3
-    text-align: center
-
-  .container
-    display: flex
-    width: 70%
-    flex-direction: row
-    align-items: center
-    justify-content: space-between
-    flex-wrap: wrap
-    .cell
-      display: flex
-      flex-basis: 80%
-      flex-direction: row
-      align-items: center
-      justify-content: space-around
-      .bullet-image
-        flex: 0 0 auto
-        width: 45px
-        height: 45px
-        // border-radius: 50%
-        background-position: 50% 50%
-        background-repeat: no-repeat
-        background-size: cover
-      p
-        flex: 2 1 70%
-        font-size: 1.3em
-        padding-left: 10px
-
-
-
-#twenty-four
-  background-image: url('./../img/24hrs-service.svg')
-#expansion-market
-  background-image: url('./../img/expansion-market.svg')
-#lower-cost
-  background-image: url('./../img/dollar-symbol-lower-cost.svg')
-#insight
-  background-image: url('./../img/consumer-exp.svg')
-#customer-service
-  background-image: url('./../img/customer-service.svg')
-#credibility
-  background-image: url('./../img/CREDIBILITY.svg')
-#sales
-  background-image: url('./../img/online-shop-sale.svg')
-  // h2 
-  //   grid-row: 1
-  //   grid-column: span 12
-  //   text-align: center
-  // h2 
-  //   grid-row: 1
-  //   grid-column: span 12
-  //   text-align: center
-
-  // ul 
-  //   grid-row: 2
-  //   grid-column: span 6
-  //   margin-left: 15px
-
-.mustard 
-  background-color: #fdda59
 
 footer 
   font-size: 0.75em
@@ -154,18 +56,11 @@ footer
   height: 20px
   margin: 0 5px
 
-.horizontal 
-  grid-column: span 2
-
-.vertical 
-  grid-column: span 2
-
-.big 
-  grid-column: span 2
-  grid-row: span 2
-
-.services
-  display: block
-  text-align: center
-  height: auto
-
+#language-box
+  position: absolute
+  right: 5px
+  top: 5px
+  a
+   padding: 0 0.2em
+  .selected
+    border: 1px solid blue

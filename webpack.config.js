@@ -13,9 +13,9 @@ module.exports = {
     },
     entry: {
         layout: './assets/js/layout.js',
-        home: './assets/js/home.js',
+        home: './home/static/home/js/home.js',
         services: './assets/js/services.js',
-        "contact-form": './assets/js/contact-form.js',
+        "contact-form": './contact/static/contact/js/contact-form.js',
         scroll: './assets/js/scroll.js',
     },
     output: {
@@ -29,9 +29,15 @@ module.exports = {
             use: extractSass.extract({
                 use: [
                     {
-                        loader: "css-loader"
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true
+                        }
                     }, {
-                        loader: "sass-loader"
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
                     }],
                     fallback: "style-loader"
                 }),

@@ -19,8 +19,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
+from django.views.i18n import JavaScriptCatalog
 
 from contact.api import PostContactMessageAPIView
+
+js_info_dict = {
+    'domain': 'djangojs',
+    'packages': ('home', 'contact',),
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +38,10 @@ urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns += i18n_patterns(
     path('', include('home.urls')),
+    path('jsi18n/', JavaScriptCatalog.as_view(domain='djangojs', packages=[
+        'home',
+        'contact',
+        ]), name='javascript-catalog'),
 )
 
 # urlpatterns += staticfiles_urlpatterns()

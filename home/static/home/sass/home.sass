@@ -1,0 +1,84 @@
+$font-stack: 'Hind', sans-serif
+
+.wrapper 
+  width: 100%
+  max-width: 1600px
+  margin-left: auto
+  margin-right: auto
+
+
+.block 
+  margin: 0 auto
+  // width: 100vw
+  background-color: #aaaaaa
+  border-bottom: 1px solid #501644
+  // height: 40vw
+
+
+.message 
+  display: flex   
+  flex-direction: column
+  justify-content: center
+  min-height: 360px
+  .jumbo 
+    font-size: 1.4em
+    font-family: $font-stack
+    text-align: center
+
+.value 
+  background-color: #d84949
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  margin: 0
+  padding: 0
+
+  h3,
+  h4
+    text-align: center
+
+  .container
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    .cell
+      display: flex
+      flex: 0 0 70%
+      flex-direction: row
+      align-items: center
+      justify-content: space-around
+      .bullet-image
+        flex: 0 0 auto
+        width: 30px
+        height: 30px
+        background-position: 50% 50%
+        background-repeat: no-repeat
+        background-size: cover
+      p
+        flex: 2 1 70%
+        font-size: 1.1em
+        padding-left: 10px
+
+      #twenty-four
+        background-image: url('./../img/24hrs-service.svg')
+      #expansion-market
+        background-image: url('./../img/expansion-market.svg')
+      #lower-cost
+        background-image: url('./../img/dollar-symbol-lower-cost.svg')
+      #insight
+        background-image: url('./../img/consumer-exp.svg')
+      #customer-service
+        background-image: url('./../img/customer-service.svg')
+      #credibility
+        background-image: url('./../img/CREDIBILITY.svg')
+      #sales
+        background-image: url('./../img/online-shop-sale.svg')
+  
+#services
+  display: none
+
+// contact-form sass code found in <root>/assets/sass/contact-form.sass
+// as it may be rendered on a modal in the future

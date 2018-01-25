@@ -1,19 +1,26 @@
 {% extends "layout.html" %}
 {% load i18n %}
 {% load static %}
-
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}Linekode | Home{% endblock %}
 
-{% block js %}
-<script type="text/javascript" src="{% static 'js/home.bundle.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/services.bundle.js' %}"></script>
-{% endblock js %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static '/css/home.css' %}">
 <link rel="stylesheet" href="{% static '/css/services.css' %}">
 <link rel="stylesheet" href="{% static '/css/contact-form.css' %}">
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+<script type="text/javascript" src="{% static 'js/home.bundle.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/services.bundle.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/contact-form.bundle.js' %}"></script>
+<script src='https://www.google.com/recaptcha/api.js?hl={{ LANGUAGE_CODE }}'></script>
+{% endblock js %}
+
+{% block bottom_page_js %}
 {% endblock %}
 
 {% block body_content %}
@@ -25,7 +32,7 @@
     </section>
 
     <section id="value" class="block value">
-        <h2>{% trans "How can a website help you grow your business?" %}</h2>
+        <h3>{% trans "How can a website help you grow your business?" %}</h2>
         <div class="container">
             <div class="cell">
                 <div id="twenty-four" class="bullet-image"></div>
@@ -57,7 +64,7 @@
             </div>
         </div>
 
-        <h3>{% trans "We can make yours and your customers online experience more memorable" %}</h3>
+        <h4>{% trans "We can make yours and your customers online experience more memorable" %}</h3>
     </section>
     <section class="divider">
         <h2>We expect the challenge</h2>
@@ -68,9 +75,6 @@
     <!-- <div class="block burgundy">
         chat with us
     </div> -->
-    <div id="contact" class="block orange">
-        <h2>{% trans "Tell us about your project" %}</h2>
-        {% include 'contact/snippets/contact_form_snippet.html' %}
-    </div>
+    <div id="contact" class="block contact"></div>
 </div>
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-22 10:03-0500\n"
+"POT-Creation-Date: 2018-01-25 14:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,11 +38,11 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: .\forms.py:27 .\templates\contact\snippets\contact_form_snippet.html:8
+#: .\forms.py:27 .\templates\contact\snippets\contact_form_snippet.html:11
 msgid "Email"
 msgstr ""
 
-#: .\forms.py:28 .\templates\contact\snippets\contact_form_snippet.html:11
+#: .\forms.py:28 .\templates\contact\snippets\contact_form_snippet.html:14
 msgid "Phone"
 msgstr ""
 
@@ -82,26 +82,30 @@ msgstr ""
 msgid "contact messages"
 msgstr ""
 
-#: .\templates\contact\snippets\contact_form_snippet.html:2
-msgid "First name(s)"
+#: .\templates\contact\snippets\contact_form_snippet.html:4
+msgid "Tell us about your project"
 msgstr ""
 
 #: .\templates\contact\snippets\contact_form_snippet.html:5
+msgid "First name(s)"
+msgstr ""
+
+#: .\templates\contact\snippets\contact_form_snippet.html:8
 msgid "Last name(s)"
 msgstr ""
 
-#: .\templates\contact\snippets\contact_form_snippet.html:18
+#: .\templates\contact\snippets\contact_form_snippet.html:21
 msgid "Message"
 msgstr ""
 
-#: .\templates\contact\snippets\contact_form_snippet.html:19
+#: .\templates\contact\snippets\contact_form_snippet.html:22
 msgid "Your description here"
 msgstr ""
 
-#: .\templates\contact\snippets\contact_form_snippet.html:23
+#: .\templates\contact\snippets\contact_form_snippet.html:26
 msgid "Submit"
 msgstr ""
 
-#: .\templates\contact\snippets\contact_form_snippet.html:24
+#: .\templates\contact\snippets\contact_form_snippet.html:27
 msgid "Clear"
 msgstr ""

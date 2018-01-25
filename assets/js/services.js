@@ -1100,7 +1100,7 @@ let viewManager = {
     }
 }
 document.addEventListener("DOMContentLoaded", function() {
-    if (window.matchMedia("(min-width: 480px").matches) {
+    if (window.matchMedia("(min-width: 760px").matches) {
         viewManager.init(galleryViewConfig.mobile, 'services-svg');
         viewManager.build();
         let confs = [
@@ -1111,4 +1111,5 @@ document.addEventListener("DOMContentLoaded", function() {
         ]
         viewManager.rotateShape(confs);
     }
+    window.onresize
 })
