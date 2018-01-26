@@ -24,6 +24,13 @@ $font-stack: 'Hind', sans-serif
     font-size: 1.4em
     font-family: $font-stack
     text-align: center
+  // parallax goodness
+  background-image: url('./../img/landscape.jpg')
+  height: 100%
+  background-attachment: fixed
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
 
 .value 
   background-color: #d84949
@@ -37,6 +44,9 @@ $font-stack: 'Hind', sans-serif
   h3,
   h4
     text-align: center
+
+  h3
+    padding: 0 0.15em
 
   .container
     display: flex
@@ -82,3 +92,7 @@ $font-stack: 'Hind', sans-serif
 
 // contact-form sass code found in <root>/assets/sass/contact-form.sass
 // as it may be rendered on a modal in the future
+
+.divider
+  h2
+  text-align: center

@@ -22,25 +22,25 @@ var ContactFormAsync = {
             event.preventDefault();
             this.send();
         }
-        var firstName, lastName, email, phone, description, submit, reset, buttonsDiv, reCaptchaContainer, reCaptchaScript;
-        firstName = creationWrapper('input', {name: 'first_name', type: 'text', placeholder: 'John', autocomplete: 'given-name', class: 'form-control'});
-        lastName = creationWrapper('input', {name: 'last_name', type: 'text', placeholder: 'Doe', autocomplete: 'family-name', class: 'form-control'});
+        var header, firstName, lastName, email, phone, description, submit, buttonsDiv, reCaptchaContainer, reCaptchaScript;
+        header = creationWrapper('h3', {innerHTML: gettext("Tell us about your project")});
+        firstName = creationWrapper('input', {name: 'first_name', type: 'text', placeholder: gettext('First name(s)'), autocomplete: 'given-name', class: 'form-control'});
+        lastName = creationWrapper('input', {name: 'last_name', type: 'text', placeholder: gettext('Last name(s)'), autocomplete: 'family-name', class: 'form-control'});
         email = creationWrapper('input', {
             name: 'email',
             type: 'email',
-            placeholder: 'john.doe@example.com',
+            placeholder: gettext('Email'),
             autocomplete: 'email',
             class: 'form-control',
             required: true
         });
-        phone = creationWrapper('input', {name: 'phone', type: 'tel', placeholder: '+1(809)123-4567', autocomplete: 'tel-national', class: 'form-control'});
-        description = creationWrapper('textarea', {name: 'description', type: 'text', placeholder: gettext('Your description here'), autocomplete: 'off', class: 'form-control'});
-        submit = creationWrapper('input', {type: 'submit', value: "Submit", class: "btn btn-send",});
-        reset = creationWrapper('input', {type: 'reset', value: "Clear", class: "btn btn-reset"});
-        buttonsDiv = creationWrapper('div', {class: 'btn-container'});
+        phone = creationWrapper('input', {name: 'phone', type: 'tel', placeholder: gettext('Phone'), autocomplete: 'tel-national', class: 'form-control'});
+        description = creationWrapper('textarea', {name: 'description', type: 'text', placeholder: gettext('Project description'), autocomplete: 'off', class: 'form-control'});
+        submit = creationWrapper('input', {type: 'submit', value: "Submit", class: "form-control btn btn-send",});
         reCaptchaContainer = creationWrapper('div', {
             class: 'g-recaptcha',
-            'data-sitekey': '6LcI9T8UAAAAAJYKpNvI3JBDRGssf8Zppx1ccXzE'
+            'data-sitekey': '6LcI9T8UAAAAAJYKpNvI3JBDRGssf8Zppx1ccXzE',
+            'data-size': 'compact'
         });
         var fNameLabel, lNameLabel, emailLabel, phoneLabel, descriptionLabel;
         fNameLabel = creationWrapper('label', {for: 'first_name', class: "label", innerHTML: gettext('First name(s)')});
@@ -49,20 +49,19 @@ var ContactFormAsync = {
         phoneLabel = creationWrapper('label', {for: 'phone', class: "label", innerHTML: gettext('Phone')});
         descriptionLabel = creationWrapper('label', {for: 'description', class: "label", innerHTML: gettext('Project description')});
 
-        form.appendChild(fNameLabel);
+        form.appendChild(header);
+        // form.appendChild(fNameLabel);
         form.appendChild(firstName);
-        form.appendChild(lNameLabel);
+        // form.appendChild(lNameLabel);
         form.appendChild(lastName);
-        form.appendChild(emailLabel);
+        // form.appendChild(emailLabel);
         form.appendChild(email);
-        form.appendChild(phoneLabel);
+        // form.appendChild(phoneLabel);
         form.appendChild(phone);
-        form.appendChild(descriptionLabel);
+        // form.appendChild(descriptionLabel);
         form.appendChild(description);
         form.appendChild(reCaptchaContainer);
-        buttonsDiv.appendChild(submit);
-        buttonsDiv.appendChild(reset);
-        form.appendChild(buttonsDiv);
+        form.appendChild(submit);
         this.form = form;
 
     },
