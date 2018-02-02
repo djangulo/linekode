@@ -1,22 +1,21 @@
-{% extends "layout.html" %}
+{% extends "layout.bundle.html" %}
 {% load i18n %}
 {% load static %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}Linekode | Home{% endblock %}
 
-
 {% block css %}
-<link rel="stylesheet" href="{% static '/css/home.css' %}">
-<link rel="stylesheet" href="{% static '/css/services.css' %}">
-<link rel="stylesheet" href="{% static '/css/contact-form.css' %}">
+<link rel="stylesheet" href="{% static '<%= htmlWebpackPlugin.files.chunks.home.css %>' %}">
+<link rel="stylesheet" href="{% static '<%= htmlWebpackPlugin.files.chunks.services.css %>' %}">
+<link rel="stylesheet" href="{% static '<%= htmlWebpackPlugin.files.chunks.contactForm.css %>' %}">
 {% endblock %}
 
 {% block js %}
 <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
-<script type="text/javascript" src="{% static 'js/home.bundle.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/services.bundle.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/contact-form.bundle.js' %}"></script>
+<script type="text/javascript" src="{% static '<%= htmlWebpackPlugin.files.chunks.home.entry %>' %}"></script>
+<script type="text/javascript" src="{% static '<%= htmlWebpackPlugin.files.chunks.services.entry %>' %}"></script>
+<script type="text/javascript" src="{% static '<%= htmlWebpackPlugin.files.chunks.contactForm.entry %>' %}"></script>
 <script src='https://www.google.com/recaptcha/api.js?hl={{ LANGUAGE_CODE }}'></script>
 {% endblock js %}
 

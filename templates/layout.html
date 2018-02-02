@@ -13,14 +13,14 @@
         <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
         {% block js %}{% endblock %}
-        <link rel="stylesheet" href="{% static '/css/layout.css' %}">
+        <link rel="stylesheet" href="{% static '<%= htmlWebpackPlugin.files.chunks.layout.css %>' %}">
         {% block css %}{% endblock %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <header>
             <a href="{% url 'home:home' %}">
-                <img src="{% static 'img/linekodelogoplain.svg' %}" alt="linekode logo"/>
+                <div class="logo" >Linekode</div>
             </a>
             <nav>
                 <ul>

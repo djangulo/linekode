@@ -15,6 +15,7 @@ var creationWrapper = function(el, options, event=null, eventFn=null) {
     return x
 }
 
+
 var ContactFormAsync = {
     init: function (id) {
         var form = creationWrapper('form', {id: id, method: 'POST'});
@@ -23,19 +24,45 @@ var ContactFormAsync = {
             this.send();
         }
         var header, firstName, lastName, email, phone, description, submit, buttonsDiv, reCaptchaContainer, reCaptchaScript;
-        header = creationWrapper('h3', {innerHTML: gettext("Tell us about your project")});
-        firstName = creationWrapper('input', {name: 'first_name', type: 'text', placeholder: gettext('First name(s)'), autocomplete: 'given-name', class: 'form-control'});
-        lastName = creationWrapper('input', {name: 'last_name', type: 'text', placeholder: gettext('Last name(s)'), autocomplete: 'family-name', class: 'form-control'});
+        header = creationWrapper('h3', {
+            innerHTML: gettext("Tell us about your project")
+        });
+        firstName = creationWrapper('input', {
+            name: 'first_name',
+            type: 'text',
+            // placeholder: gettext('First name(s)'),
+            autocomplete: 'given-name',
+            class: 'form-control'
+        });
+        lastName = creationWrapper('input', {
+            name: 'last_name',
+            type: 'text',
+            // placeholder: gettext('Last name(s)'),
+            autocomplete: 'family-name',
+            class: 'form-control'
+        });
         email = creationWrapper('input', {
             name: 'email',
             type: 'email',
-            placeholder: gettext('Email'),
+            // placeholder: gettext('Email'),
             autocomplete: 'email',
             class: 'form-control',
             required: true
         });
-        phone = creationWrapper('input', {name: 'phone', type: 'tel', placeholder: gettext('Phone'), autocomplete: 'tel-national', class: 'form-control'});
-        description = creationWrapper('textarea', {name: 'description', type: 'text', placeholder: gettext('Project description'), autocomplete: 'off', class: 'form-control'});
+        phone = creationWrapper('input', {
+            name: 'phone',
+            type: 'tel',
+            // placeholder: gettext('Phone'),
+            autocomplete: 'tel-national',
+            class: 'form-control',
+        });
+        description = creationWrapper('textarea', {
+            name: 'description',
+            type: 'text',
+            // placeholder: gettext('Project description'),
+            autocomplete: 'off',
+            class: 'form-control'
+        });
         submit = creationWrapper('input', {type: 'submit', value: "Submit", class: "form-control btn btn-send",});
         reCaptchaContainer = creationWrapper('div', {
             class: 'g-recaptcha',
@@ -43,23 +70,48 @@ var ContactFormAsync = {
             'data-size': 'compact'
         });
         var fNameLabel, lNameLabel, emailLabel, phoneLabel, descriptionLabel;
-        fNameLabel = creationWrapper('label', {for: 'first_name', class: "label", innerHTML: gettext('First name(s)')});
-        lNameLabel = creationWrapper('label', {for: 'last_name', class: "label", innerHTML: gettext('Last name(s)')});
-        emailLabel = creationWrapper('label', {for: 'email', class: "label", innerHTML: gettext('Email')});
-        phoneLabel = creationWrapper('label', {for: 'phone', class: "label", innerHTML: gettext('Phone')});
-        descriptionLabel = creationWrapper('label', {for: 'description', class: "label", innerHTML: gettext('Project description')});
+        fNameLabel = creationWrapper('label', {
+            for: 'first_name',
+            class: "label",
+            // innerHTML: gettext('First name(s)'),
+            'data-placeholder': gettext('First name(s)')
+        });
+        lNameLabel = creationWrapper('label', {
+            for: 'last_name',
+            class: "label",
+            // innerHTML: gettext('Last name(s)'),
+            'data-placeholder': gettext('Last name(s)')
+        });
+        emailLabel = creationWrapper('label', {
+            for: 'email',
+            class: "label",
+            // innerHTML: gettext('Email'),
+            'data-placeholder': gettext('Email')
+        });
+        phoneLabel = creationWrapper('label', {
+            for: 'phone',
+            class: "label",
+            // innerHTML: gettext('Phone'),
+            'data-placeholder': gettext('Phone')
+        });
+        descriptionLabel = creationWrapper('label', {
+            for: 'description',
+            class: "label",
+            // innerHTML: gettext('Project description'),
+            'data-placeholder': gettext('Project description')
+        });
 
         form.appendChild(header);
-        // form.appendChild(fNameLabel);
-        form.appendChild(firstName);
-        // form.appendChild(lNameLabel);
-        form.appendChild(lastName);
-        // form.appendChild(emailLabel);
-        form.appendChild(email);
-        // form.appendChild(phoneLabel);
-        form.appendChild(phone);
-        // form.appendChild(descriptionLabel);
-        form.appendChild(description);
+        fNameLabel.appendChild(firstName);
+        lNameLabel.appendChild(lastName);
+        emailLabel.appendChild(email);
+        phoneLabel.appendChild(phone);
+        descriptionLabel.appendChild(description);
+        form.appendChild(fNameLabel);
+        form.appendChild(lNameLabel);
+        form.appendChild(emailLabel);
+        form.appendChild(phoneLabel);
+        form.appendChild(descriptionLabel);
         form.appendChild(reCaptchaContainer);
         form.appendChild(submit);
         this.form = form;

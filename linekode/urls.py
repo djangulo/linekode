@@ -20,13 +20,9 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 from django.views.i18n import JavaScriptCatalog
+from django.views.static import serve
 
 from contact.api import PostContactMessageAPIView
-
-js_info_dict = {
-    'domain': 'djangojs',
-    'packages': ('home', 'contact',),
-}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,7 +30,6 @@ urlpatterns = [
     path('api/v1/messages/', PostContactMessageAPIView.as_view(), name='post-message'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns += i18n_patterns(
     path('', include('home.urls')),
@@ -43,11 +38,3 @@ urlpatterns += i18n_patterns(
         'contact',
         ]), name='javascript-catalog'),
 )
-
-# urlpatterns += staticfiles_urlpatterns()
-
-#  + static(
-#     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-# )
-
-# urlpatterns += staticfiles_urlpatterns()

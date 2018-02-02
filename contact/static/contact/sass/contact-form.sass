@@ -1,8 +1,13 @@
+$font-stack: 'Hind', sans-serif
+
 =border-radius($radius)
   -webkit-border-radius: $radius
   -moz-border-radius: $radius
   -ms-border-radius: $radius
   border-radius: $radius
+
+textarea
+  height: 7em
 
 .contact
   display: flex
@@ -17,11 +22,65 @@
     h3
       text-align: center
       width: 100%
+    .label
+      background-color: #ffffff
+      position: relative
+      height: 30px
+      flex: 1 1 100%
+      padding: 3px
+      +border-radius(8px)
+      border: 1px solid gray
+      margin-bottom: 0.4em
+      text-indent: 10px
+      color: #501644
+      box-shadow: rgba(0,0,0,0.4) 2px 2px 2px inset
+    .label::after
+      position: absolute
+      left: 4px
+      top: 5px
+      content: attr(data-placeholder)
+      pointer-events: none
+      opacity: 1
+      z-index: 1
     .form-control
       background-color: #ffffff
       height: 30px
-      flex: 1 1 100%
+      position: relative
+      z-index: 1
+      width: 100%
       border: none
-      +border-radius(3%)
+      +border-radius(8px)
       margin-bottom: 0.4em
+      text-indent: 10px
+      color: #501644
+    .form-control::-webkit-input-placeholder
+      color: #501644
+      font-family: $font-stack
+      text-indent: 10px
+      position: relative
+    .form-control::-webkit-input-placeholder::after
+      position: absolute
+      left: 10px
+      top: 2px
+      content: attr(data-placeholder)
+      pointer-events: none
+      opacity: 1
+    .form-control::-webkit-input-placeholder
+      color: #501644
+      font-family: $font-stack
+      text-indent: 10px
+    .form-control::-moz-placeholder
+      color: #501644
+      font-family: $font-stack
+      text-indent: 10px
+    .form-control:-ms-input-placeholder
+      color: #501644
+      font-family: $font-stack
+      text-indent: 10px
+    .form-control:-moz-placeholder
+      color: #501644
+      font-family: $font-stack
+      text-indent: 10px
+    textarea.form-control
+      height: 7em
 
