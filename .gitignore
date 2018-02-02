@@ -5,7 +5,8 @@ __pycache__
 
 media
 compiled_static
-bundle
+assets
+*.bundle.*
 *_unsafe*
 
 fablog.log
